@@ -259,9 +259,9 @@ public class UserOptionsFragment extends Fragment
         String alertMsg = "בעקבות החסימה תתבצע מחיקת התורים העתידיים של המשתמש" ;
         SimpleMethod doIfUserPressOk = () ->
         {
+            boolean haveQueue = user.queue.length() > 0;
             doBeforeServerRequest();
-            boolean haveueue = user.queue.length() > 0;
-            ServerRequest serverRequest = new ServerRequest((String response) ->Setting.blockUserAns(response,haveueue));
+            ServerRequest serverRequest = new ServerRequest((String response) ->Setting.blockUserAns(response,haveQueue));
             serverRequest.blockUser(user.mail);
         };
         AlertDialog.showAlertDialog(alertTitle,alertMsg,doIfUserPressOk);
@@ -282,8 +282,12 @@ public class UserOptionsFragment extends Fragment
         SimpleMethod doIfUserPressOk = () ->
         {
             doBeforeServerRequest();
-            boolean haveueue = user.queue.length() > 0;
-            ServerRequest serverRequest = new ServerRequest((String response) ->Setting.removeUserAns(response,haveueue));
+            boolean haveQueue;
+            if (user.blocked)
+                haveQueue = false;
+            else
+                haveQueue = user.queue.length() >0;
+            ServerRequest serverRequest = new ServerRequest((String response) ->Setting.removeUserAns(response,haveQueue));
             serverRequest.removeUser(user.mail);
         };
         AlertDialog.showAlertDialog(alertTitle,alertMsg,doIfUserPressOk);
