@@ -2,6 +2,4 @@
     <string name="app_name">babershop manager</string>
     <string name="chooseDate">בחר תאריך</string>
     <string name="chooseHour">בחר שעה</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
