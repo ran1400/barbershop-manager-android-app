@@ -74,14 +74,14 @@ public class ExelHandle
 
     private void setHeaderPestQueuesListFile()
     {
-            Row row = sheets[0].createRow(0);
-            String headers[] = {"תאריך","שעה","שם"};
-            for (int i = 0 ; i < headers.length ; i++)
-            {
-                cell = row.createCell(i);
-                cell.setCellValue(headers[i]);
-                cell.setCellStyle(headerCellStyle);
-            }
+        Row row = sheets[0].createRow(0);
+        String headers[] = {"תאריך","שעה","שם"};
+        for (int i = 0 ; i < headers.length ; i++)
+        {
+            cell = row.createCell(i);
+            cell.setCellValue(headers[i]);
+            cell.setCellStyle(headerCellStyle);
+        }
     }
 
     public String makeUserListFile()
@@ -89,8 +89,8 @@ public class ExelHandle
         sheets = new Sheet[2];
         sheetNames = new String[]{"משתמשים","משתמשים חסומים"};
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH-mm-ss", Locale.getDefault());
-        String time = sdf.format(new Date());
-        fileName = "users list " + time + ".xls";
+        String crntTime = sdf.format(new Date());
+        fileName = "users list " + crntTime + ".xls";
         Boolean res = makeUserListFileHelper();
         if (res)
             return fileName;
@@ -185,16 +185,16 @@ public class ExelHandle
             hour = QueuesData.pastQueuesArray[i].substring(11,16);
             name = QueuesData.pastQueuesArray[i].substring(19);
             // Create a New Row for every new entry in list
-            Row rowData = sheets[0].createRow(i+1);
+            Row row = sheets[0].createRow(i+1);
 
             // Create Cells for each row
-            cell = rowData.createCell(0);
+            cell = row.createCell(0);
             cell.setCellValue(DateHelper.flipDateString(date));
 
-            cell = rowData.createCell(1);
+            cell = row.createCell(1);
             cell.setCellValue(hour);
 
-            cell = rowData.createCell(2);
+            cell = row.createCell(2);
             cell.setCellValue(name);
         }
     }
@@ -266,7 +266,6 @@ public class ExelHandle
         {
             fileOutputStream = new FileOutputStream(file);
             workbook.write(fileOutputStream);
-            Log.e(TAG, "Writing file" + file);
             isSuccess = true;
         }
         catch (IOException e)

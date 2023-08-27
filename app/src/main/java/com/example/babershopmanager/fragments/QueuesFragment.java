@@ -174,13 +174,4 @@ public class QueuesFragment extends Fragment
         }
     }
 
-    public static void addTextToLayout(LinearLayout layout,String txt,int size)
-    {
-        TextView textView = new TextView(SharedData.mainActivity);
-        textView.setText(txt);
-        textView.setTextSize(size);
-        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        layout.addView(textView);
-    }
-
 }

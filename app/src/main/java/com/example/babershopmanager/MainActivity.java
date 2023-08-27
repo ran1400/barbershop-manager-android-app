@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         if (SharedData.getFromMemory("firstEnter"))
             firstEnter();
         ServerRequest serverRequest = new ServerRequest( (String response) -> Main.checkIfUserCmdEnabledAns(response) );
-        serverRequest.checkIfUserCmdEnabled();
+        serverRequest.enterToTheApp();
     }
 
     private void firstEnter()
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity
         loadingWindowText.setVisibility(View.INVISIBLE);
         loadingView.setVisibility(View.VISIBLE);
         ServerRequest serverRequest = new ServerRequest( (String response) ->Main.checkIfUserCmdEnabledAns(response));
-        serverRequest.checkIfUserCmdEnabled();
+        serverRequest.enterToTheApp();
     }
 
 

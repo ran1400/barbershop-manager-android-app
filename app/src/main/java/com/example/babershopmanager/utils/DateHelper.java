@@ -117,7 +117,7 @@ public class DateHelper
             dayStr = "0" + day;
         else
             dayStr = String.valueOf(day);
-        return year + monthStr + dayStr + hourStr + minStr;
+        return year + monthStr + dayStr + hourStr + minStr + "00"; // 00 for the seconds
     }
 
     public static String getTimeString(Date date,String hourStr,String minStr) //for show to the user
@@ -157,7 +157,7 @@ public class DateHelper
         return c.get(Calendar.YEAR) + monthStr + dayStr;
     }
 
-    public static String getTimeString(Date date,int hour) //for send this to the server
+    public static String getTime(Date date, int hour) //for send this to the server
     {
         String hourStr,minStr;
         int hourVal = (hour / 100);
@@ -184,7 +184,7 @@ public class DateHelper
             dayStr = "0" + day;
         else
             dayStr = String.valueOf(day);
-        return year + monthStr + dayStr + hourStr + minStr;
+        return year + monthStr + dayStr + hourStr + minStr + "00"; // 00 for the seconds
     }
 
     public static String flipDateString (String input) //input is yyyy-mm-dd res is day.month.year

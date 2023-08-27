@@ -1,8 +1,13 @@
 package com.example.babershopmanager.fragments.QueuesFragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import android.app.Fragment;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.AbsoluteSizeSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +31,7 @@ import java.util.GregorianCalendar;
 
 public class PastQueuesFragment extends Fragment
 {
-    private LinearLayout queuesLayout;
+    private TextView pastQueuesEditText;
     private View loadingView;
     private EditText dateStartEditText,dateEndEditText;
     private Button getPastQueuesBtn,getPestQueuesFileBtn;
@@ -39,10 +44,10 @@ public class PastQueuesFragment extends Fragment
         SharedData.pastQueuesFragment = this;
         getPestQueuesFileBtn = view.findViewById(R.id.getPestQueueFileBtn);
         loadingView = view.findViewById(R.id.pastQueuesFragmentLoadingView);
-        queuesLayout = view.findViewById(R.id.queuesScrollViewLayout);
         dateStartEditText = view.findViewById(R.id.pastQueuesDateStart);
         dateEndEditText = view.findViewById(R.id.pastQueuesDateEnd);
         getPastQueuesBtn = view.findViewById(R.id.getPastQueueBtn);
+        pastQueuesEditText = view.findViewById(R.id.pastQueuesTextView);
         getPestQueuesFileBtn.setOnClickListener(this::getPestQueuesFileBtn);
         getPastQueuesBtn.setOnClickListener(this::getPastQueuesBtn);
         dateStartEditText.setOnClickListener(this::startDateClicked);
@@ -158,17 +163,9 @@ public class PastQueuesFragment extends Fragment
         datePicker.show(getFragmentManager(), "datePicker");
     }
 
-    private void addTextToLayout(String txt, int size)
-    {
-        TextView textView = new TextView(SharedData.mainActivity);
-        textView.setText(txt);
-        textView.setTextSize(size);
-        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        queuesLayout.addView(textView);
-    }
-
     public void createQueuesViewList()
     {
+
         loadingView.setVisibility(View.GONE);
         getPestQueuesFileBtn.setVisibility(View.VISIBLE);
         if (QueuesData.pastQueuesArray == null)
@@ -176,35 +173,51 @@ public class PastQueuesFragment extends Fragment
             getPestQueuesFileBtn.setVisibility(View.GONE);
             return;
         }
-        queuesLayout.removeAllViewsInLayout();
-        String header = QueuesData.pastQueueStringStart + " - " + QueuesData.pastQueueStringEnd + " : ";
-        addTextToLayout(header,22);
-        addTextToLayout("----------------------------------------",22);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        String header = QueuesData.pastQueueStringStart + " - " + QueuesData.pastQueueStringEnd + " :\n";
+        header += "----------------------------------------\n\n";
+        spannableStringBuilder.append(header);
+        int startIndex,endIndex = header.length();
+        spannableStringBuilder.setSpan(new AbsoluteSizeSpan(22, true), 0,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        startIndex = endIndex;
         if (QueuesData.pastQueuesArray.length == 0)
         {
             getPestQueuesFileBtn.setVisibility(View.GONE);
-            addTextToLayout("אין תורים",20);
+            String noQueueText = "אין תורים";
+            spannableStringBuilder.append(noQueueText);
+            endIndex = startIndex + noQueueText.length();
+            spannableStringBuilder.setSpan(new AbsoluteSizeSpan(20, true), startIndex,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            pastQueuesEditText.setText(spannableStringBuilder);
             return;
         }
         int queuesArrayLength = QueuesData.pastQueuesArray.length;
         String prevQueueDate = QueuesData.pastQueuesArray[0].substring(0,10);
-        String date = DateHelper.flipDateString(prevQueueDate) + "  " + DateHelper.getDayOfWeek(prevQueueDate);
-        addTextToLayout(date + "\n",20);
+        String date = DateHelper.flipDateString(prevQueueDate) + "  " + DateHelper.getDayOfWeek(prevQueueDate) + "\n";
+        spannableStringBuilder.append(date);
+        endIndex = startIndex + date.length();
+        spannableStringBuilder.setSpan(new AbsoluteSizeSpan(20, true), startIndex,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        startIndex = endIndex;
         for (int i = 0; i < queuesArrayLength ; i++)
         {
             String crntQueueDate = QueuesData.pastQueuesArray[i].substring(0,10);
             if (crntQueueDate.equals(prevQueueDate) == false)
             {
-                addTextToLayout( "",20);
-                date = DateHelper.flipDateString(crntQueueDate.substring(0,10)) + "  " + DateHelper.getDayOfWeek(crntQueueDate);
-                addTextToLayout( date + "\n",20);
+                date = "\n" + DateHelper.flipDateString(crntQueueDate.substring(0,10)) + "  " + DateHelper.getDayOfWeek(crntQueueDate) + "\n";
+                spannableStringBuilder.append(date);
+                endIndex = startIndex + date.length();
+                spannableStringBuilder.setSpan(new AbsoluteSizeSpan(20, true), startIndex,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                startIndex = endIndex;
             }
             String hour = QueuesData.pastQueuesArray[i].substring(11,13);
             String min = QueuesData.pastQueuesArray[i].substring(14,16);
             String name = QueuesData.pastQueuesArray[i].substring(19);
-            addTextToLayout(hour+ ":" + min + name, 18);
+            String queue = "\n" + hour+ ":" + min + name + "\n";
+            spannableStringBuilder.append(queue);
+            endIndex = startIndex + queue.length();
+            spannableStringBuilder.setSpan(new AbsoluteSizeSpan(18, true), startIndex,endIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            startIndex = endIndex;
             prevQueueDate = crntQueueDate;
         }
-        addTextToLayout( "\n",20);
+        pastQueuesEditText.setText(spannableStringBuilder);
     }
 }

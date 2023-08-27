@@ -42,7 +42,10 @@ public class AddQueues
             return;
         else
         {
-            Toast.makeText(SharedData.mainActivity, "נוספו " + response + " תורים", Toast.LENGTH_SHORT).show();
+            if (response.equals("1"))
+                Toast.makeText(SharedData.mainActivity, "נוסף תור אחד", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(SharedData.mainActivity, "נוספו " + response + " תורים", Toast.LENGTH_SHORT).show();
             QueuesData.askForEmptyQueues = true;
         }
     }

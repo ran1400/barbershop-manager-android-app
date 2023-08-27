@@ -57,13 +57,11 @@ public class ReservedQueues
         {
             Toast.makeText(SharedData.mainActivity, "התור שונה", Toast.LENGTH_SHORT).show();
             SharedData.queuesFragment.refreshQueues();
-            return;
         }
         else if (response.equals("cmd failed"))
         {
             Toast.makeText(SharedData.mainActivity, "הפעולה נכשלה - נסה שוב", Toast.LENGTH_SHORT).show();
             SharedData.queuesFragment.refreshQueues();
-            return;
         }
         else if (response.equals("queue exist"))
             Toast.makeText(SharedData.mainActivity, "הפעולה נכשלה - התור תפוס על ידי מישהו אחר", Toast.LENGTH_SHORT).show();

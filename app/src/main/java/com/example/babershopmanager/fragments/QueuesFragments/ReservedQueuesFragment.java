@@ -92,7 +92,7 @@ public class ReservedQueuesFragment extends Fragment
 
     private void popUpCallBtn(View view) //make call to queue owner
     {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + queueClicked.phone));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + queueClicked.userPhone));
         startActivity(intent);
     }
 
@@ -130,16 +130,25 @@ public class ReservedQueuesFragment extends Fragment
             doBeforePopUpServerRequest();
             String newQueue = DateHelper.getTime(DateTimePickerData.data, hourStr, minStr);
             ServerRequest serverRequest = new ServerRequest((String response) -> ReservedQueues.changeReservedQueueAns(response));
-            serverRequest.changeReservedQueue(queueClicked.id, queueClicked.getTime(), newQueue,true);
+            serverRequest.changeReservedQueue(queueClicked.userMail, queueClicked.getTime(), newQueue,true);
         };
         SimpleMethod doIfOp2 = () ->
         {
             doBeforePopUpServerRequest();
             String newQueue = DateHelper.getTime(DateTimePickerData.data, hourStr, minStr);
             ServerRequest serverRequest = new ServerRequest((String response) -> ReservedQueues.changeReservedQueueAns(response));
-            serverRequest.changeReservedQueue(queueClicked.id, queueClicked.getTime(), newQueue,false);
+            serverRequest.changeReservedQueue(queueClicked.userMail, queueClicked.getTime(), newQueue,false);
         };
         AlertDialog.showAlertDialog(alertTitle,alertMsg,"1","2",doIfOp1,doIfOp2);
+    }
+
+    private void addTextToLayout(String txt,int size)
+    {
+        TextView textView = new TextView(SharedData.mainActivity);
+        textView.setText(txt);
+        textView.setTextSize(size);
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        reservedQueuesLayout.addView(textView);
     }
 
     public void createReservedQueuesViewList()
@@ -151,18 +160,18 @@ public class ReservedQueuesFragment extends Fragment
         reservedQueuesLayout.removeAllViewsInLayout();
         if (QueuesData.reservedQueuesArray.length == 0)
         {
-            QueuesFragment.addTextToLayout(reservedQueuesLayout,"אין תורים קבועים",20);
+            addTextToLayout("אין תורים קבועים",20);
             return;
         }
         int queuesArrayLength = QueuesData.reservedQueuesArray.length;
         String date = QueuesData.reservedQueuesArray[0].getDateAndDayString();
-        QueuesFragment.addTextToLayout(reservedQueuesLayout,date,20);
+        addTextToLayout(date,20);
         ReservedQueue prevQueue = QueuesData.reservedQueuesArray[0];
         for (int i = 0; i < queuesArrayLength ; i+= 1)
         {
             ReservedQueue crntQueue = QueuesData.reservedQueuesArray[i];
-            if (crntQueue.date.equals(prevQueue.date) == false)
-                QueuesFragment.addTextToLayout(reservedQueuesLayout, crntQueue.getDateAndDayString(), 20);
+            if (crntQueue.queueDate.equals(prevQueue.queueDate) == false)
+                addTextToLayout(crntQueue.getDateAndDayString(), 20);
             addBtnToTheLayout(crntQueue.getHourAndNameString(),i);
             prevQueue = crntQueue;
         }
@@ -185,7 +194,7 @@ public class ReservedQueuesFragment extends Fragment
         {
             doBeforePopUpServerRequest();
             ServerRequest serverRequest = new ServerRequest( (String response) ->ReservedQueues.deleteReservedQueueAns(response));
-            serverRequest.deleteUserReservedQueue(queueClicked.getTime(),queueClicked.id);
+            serverRequest.deleteReservedQueueByMail(queueClicked.getTime(),queueClicked.userMail);
         };
         AlertDialog.showAlertDialog(alertTitle,alertMsg,doIfUserPressOk);
     }
@@ -197,7 +206,7 @@ public class ReservedQueuesFragment extends Fragment
         SimpleMethod doIfUserPressOk = () ->
         {
             doBeforePopUpServerRequest();
-            String id = queueClicked.id;
+            String id = queueClicked.userMail;
             ServerRequest serverRequest = new ServerRequest((String response) -> ReservedQueues.cleanReservedQueueAns(response));
             serverRequest.cleanReservedQueue(queueClicked.getTime(), id);
         };
@@ -236,8 +245,8 @@ public class ReservedQueuesFragment extends Fragment
         reservedQueuesFrame.setVisibility(View.GONE);
         queueClicked = QueuesData.reservedQueuesArray[view.getId()];
         popUpLayout.setVisibility(View.VISIBLE);
-        String text = DateHelper.flipDateString(queueClicked.date) + "\n" + queueClicked.hour + "\n";
-        text += queueClicked.name + "\n" + "מספר פלאפון :" + "\n" + queueClicked.phone ;
+        String text = DateHelper.flipDateString(queueClicked.queueDate) + "\n" + queueClicked.queueHour + "\n";
+        text += queueClicked.userName + "\n" + "מספר פלאפון :" + "\n" + queueClicked.userPhone;
         popUpText.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         popUpText.setText(text);
     }

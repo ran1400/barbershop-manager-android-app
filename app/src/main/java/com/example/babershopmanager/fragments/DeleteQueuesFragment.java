@@ -289,8 +289,8 @@ public class DeleteQueuesFragment extends Fragment
         SimpleMethod doIfUserPressOk = () ->
         {
             doBeforeDeleteQueuesRequest();
-            String fromDate = DateHelper.getTimeString(DeleteQueuesData.deleteQueuesFromDate, DeleteQueuesData.deleteQueuesFromHour);
-            String toDate = DateHelper.getTimeString(DeleteQueuesData.deleteQueuesToDate, DeleteQueuesData.deleteQueuesToHour);
+            String fromDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesFromDate, DeleteQueuesData.deleteQueuesFromHour);
+            String toDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesToDate, DeleteQueuesData.deleteQueuesToHour);
             ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteReservedQueuesAns(response));
             serverRequest.deleteReservedQueues(fromDate, toDate);
         };
@@ -303,8 +303,8 @@ public class DeleteQueuesFragment extends Fragment
         SimpleMethod doIfUserPressOk = () ->
         {
             doBeforeDeleteQueuesRequest();
-            String fromDate = DateHelper.getTimeString(DeleteQueuesData.deleteQueuesFromDate,DeleteQueuesData.deleteQueuesFromHour);
-            String toDate = DateHelper.getTimeString(DeleteQueuesData.deleteQueuesToDate,DeleteQueuesData.deleteQueuesToHour);
+            String fromDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesFromDate,DeleteQueuesData.deleteQueuesFromHour);
+            String toDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesToDate,DeleteQueuesData.deleteQueuesToHour);
             ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteEmptyAndReservedQueuesAns(response));
             serverRequest.deleteEmptyAndReservedQueues(fromDate, toDate);
         };
@@ -317,8 +317,8 @@ public class DeleteQueuesFragment extends Fragment
         SimpleMethod doIfUserPressOk = () ->
         {
             doBeforeDeleteQueuesRequest();
-            String fromDate = DateHelper.getTimeString(DeleteQueuesData.deleteQueuesFromDate,DeleteQueuesData.deleteQueuesFromHour);
-            String toDate = DateHelper.getTimeString(DeleteQueuesData.deleteQueuesToDate,DeleteQueuesData.deleteQueuesToHour);
+            String fromDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesFromDate,DeleteQueuesData.deleteQueuesFromHour);
+            String toDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesToDate,DeleteQueuesData.deleteQueuesToHour);
             ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteEmptyQueuesAns(response));
             serverRequest.deleteEmptyQueues(fromDate, toDate);
         };
@@ -358,9 +358,9 @@ public class DeleteQueuesFragment extends Fragment
         SimpleMethod doIfUserPressOk = () ->
         {
             doBeforeDeleteQueueRequest();
-            String date = DateHelper.getTimeString(DeleteQueuesData.deleteQueueDate,DeleteQueuesData.deleteQueueHour);
+            String date = DateHelper.getTime(DeleteQueuesData.deleteQueueDate,DeleteQueuesData.deleteQueueHour);
             ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteReservedQueueAns(response));
-            serverRequest.deleteReservedQueue(date);
+            serverRequest.deleteReservedQueueByTime(date);
         };
         AlertDialog.showAlertDialog(alertTitle,"",doIfUserPressOk);
     }
@@ -371,7 +371,7 @@ public class DeleteQueuesFragment extends Fragment
         SimpleMethod doIfUserPressOk = () ->
         {
             doBeforeDeleteQueueRequest();
-            String date = DateHelper.getTimeString(DeleteQueuesData.deleteQueueDate,DeleteQueuesData.deleteQueueHour);
+            String date = DateHelper.getTime(DeleteQueuesData.deleteQueueDate,DeleteQueuesData.deleteQueueHour);
             ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteEmptyOrReservedQueueAns(response));
             serverRequest.deleteEmptyOrReservedQueue(date);
         };
@@ -384,7 +384,7 @@ public class DeleteQueuesFragment extends Fragment
         SimpleMethod doIfUserPressOk = () ->
         {
             doBeforeDeleteQueueRequest();
-            String date = DateHelper.getTimeString(DeleteQueuesData.deleteQueueDate,DeleteQueuesData.deleteQueueHour);
+            String date = DateHelper.getTime(DeleteQueuesData.deleteQueueDate,DeleteQueuesData.deleteQueueHour);
             ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteEmptyQueueAns(response));
             serverRequest.deleteEmptyQueue(date);
         };

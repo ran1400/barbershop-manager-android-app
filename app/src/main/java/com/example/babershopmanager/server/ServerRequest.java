@@ -22,9 +22,7 @@ public class ServerRequest
     private Map map ;
     private String url;
 
-
     private ServerResponseHandle serverResponseHandle;
-
 
     public ServerRequest(ServerResponseHandle serverResponseHandle)
     {
@@ -33,9 +31,9 @@ public class ServerRequest
         map.put("secretKey", SECRET_KEY);
     }
 
-    public void changeReservedQueueByMail(String userMail ,String prevQueue,String newQueue,boolean addToEmptyQueue)
+    public void changeReservedQueue(String userMail ,String prevQueue,String newQueue,boolean addToEmptyQueue)
     {
-        url = "https://ran140009g.online/commands/manager/change_reserved_queue_by_mail.php";
+        url = "https://ran140009g.online/commands/manager/change_reserved_queue.php";
         map.put("newQueue",newQueue);
         map.put("mail",userMail);
         map.put("prevQueue",prevQueue);
@@ -45,24 +43,11 @@ public class ServerRequest
             map.put("addToEmptyQueue","no");
         sendRequest();
     }
+    
 
-    public void changeReservedQueue(String userId ,String prevQueue,String newQueue,boolean addToEmptyQueue)
+    public void enterToTheApp()
     {
-        url = "https://ran140009g.online/commands/manager/change_reserved_queue.php";
-        map.put("newQueue",newQueue);
-        map.put("userId",userId);
-        map.put("prevQueue",prevQueue);
-        if (addToEmptyQueue)
-            map.put("addToEmptyQueue","yes");
-        else
-            map.put("addToEmptyQueue","no");
-        sendRequest();
-    }
-
-
-    public void checkIfUserCmdEnabled()
-    {
-        url = "https://ran140009g.online/commands/manager/check_if_user_cmd_enabled.php";
+        url = "https://ran140009g.online/commands/manager/enter_to_the_app.php";
         sendRequest();
     }
 
@@ -72,7 +57,6 @@ public class ServerRequest
         map.put("msg",msg);
         sendRequest();
     }
-
 
     // never send notifications to manager on change in queues
     public void neverSendQueueUpdates()
@@ -172,15 +156,7 @@ public class ServerRequest
         sendRequest();
     }
 
-    public void deleteUserReservedQueue(String time, String id)
-    {
-        url = "https://ran140009g.online/commands/manager/remove_reserved_queue_by_id.php";
-        map.put("date",time);
-        map.put("userId",id);
-        sendRequest();
-    }
-
-    public void deleteUserReservedQueueByMail(String queue, String mail)
+    public void deleteReservedQueueByMail(String queue, String mail)
     {
         url = "https://ran140009g.online/commands/manager/remove_reserved_queue_by_mail.php";
         map.put("date",queue);
@@ -188,9 +164,9 @@ public class ServerRequest
         sendRequest();
     }
 
-    public void cleanReservedQueueByMail(String queue, String mail)
+    public void cleanReservedQueue(String queue, String mail)
     {
-        url = "https://ran140009g.online/commands/manager/remove_reserved_queue_and_add_empty_queue_by_mail.php";
+        url = "https://ran140009g.online/commands/manager/remove_reserved_queue_and_add_empty_queue.php";
         map.put("date",queue);
         map.put("mail",mail);
         sendRequest();
@@ -210,22 +186,14 @@ public class ServerRequest
         sendRequest();
     }
 
-    public void deleteReservedQueue(String date)
+    public void deleteReservedQueueByTime(String date)
     {
-        url = "https://ran140009g.online/commands/manager/remove_reserved_queue.php";
+        url = "https://ran140009g.online/commands/manager/remove_reserved_queue_by_time.php";
         map.put("date", date);
         sendRequest();
     }
 
-
-    public void cleanReservedQueue(String time,String id)
-    {
-        url = "https://ran140009g.online/commands/manager/remove_reserved_queue_and_add_empty_queue.php";
-        map.put("date",time);
-        map.put("userId",id);
-        sendRequest();
-    }
-
+    
     public void getPastReservedQueues(String startDate,String endDate)
     {
         url = "https://ran140009g.online/commands/manager/get_past_reserved_queues_between_dates.php";
@@ -271,7 +239,7 @@ public class ServerRequest
         sendRequest();
     }
 
-    public void addQueues(String queueDays,String startHour,String endHour)
+    public void addEmptyQueues(String queueDays, String startHour, String endHour)
     {
         url = "https://ran140009g.online/commands/manager/add_empty_queues.php";
         map.put("datesList",queueDays);
@@ -281,17 +249,18 @@ public class ServerRequest
         sendRequest();
     }
 
-    public void addQueue(String time)
+    public void addEmptyQueue(String time)
     {
         url = "https://ran140009g.online/commands/manager/add_empty_queue.php";
         map.put("time",time);
         sendRequest();
     }
 
-    public void removeUser(String mail)
+    public void removeUser(String userMail,String userName)
     {
         url = "https://ran140009g.online/commands/manager/remove_user.php";
-        map.put("mail",mail);
+        map.put("mail",userMail);
+        map.put("name",userName);
         sendRequest();
     }
 
@@ -312,13 +281,15 @@ public class ServerRequest
 
     private void sendRequest()
     {
-        Log.d("mapServer",map.toString());
+        Log.d("sendServerRequest",url);
+        Log.d("sendServerRequest",map.toString());
         StringRequest sr = new StringRequest(1, url,
                 new Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String response)
                     {
+                        Log.d("sendServerRequest",response);
                         serverResponseHandle.doWhenGetResponseFromTheServer(response);
                     }
                 }, new Response.ErrorListener()
@@ -326,6 +297,7 @@ public class ServerRequest
             @Override
             public void onErrorResponse(VolleyError error)
             {
+                Log.d("sendServerRequest",REQUEST_ERROR);
                 serverResponseHandle.doWhenGetResponseFromTheServer(REQUEST_ERROR);
             }
         })
@@ -342,7 +314,6 @@ public class ServerRequest
 
     public static boolean requestAnsHelper(String response)
     {
-        Log.d("response64",response);
         MainActivity mainActivity = SharedData.mainActivity;
         if (response.equals(ServerRequest.REQUEST_ERROR))
         {

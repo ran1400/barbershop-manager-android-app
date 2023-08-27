@@ -326,9 +326,9 @@ public class AddQueuesFragment extends Fragment
         SimpleMethod doIfUserPressOk = () ->
         {
             doBeforeAddQueueRequest();
-            String queueToAdd = DateHelper.getTimeString(AddQueuesData.addQueueDate,AddQueuesData.addQueueHour);
+            String queueToAdd = DateHelper.getTime(AddQueuesData.addQueueDate,AddQueuesData.addQueueHour);
             ServerRequest serverRequest = new ServerRequest((String response) -> AddQueues.addQueueAns(response));
-            serverRequest.addQueue(queueToAdd);
+            serverRequest.addEmptyQueue(queueToAdd);
         };
         AlertDialog.showAlertDialog(alertTitle,"",doIfUserPressOk);
     }
@@ -448,7 +448,7 @@ public class AddQueuesFragment extends Fragment
             String startHour = DateHelper.makeHourStr(AddQueuesData.addQueuesHourStart);
             String endHour = DateHelper.makeHourStr(AddQueuesData.addQueuesHourEnd);
             ServerRequest serverRequest = new ServerRequest((String response) -> AddQueues.addQueuesAns(response));
-            serverRequest.addQueues(queueDaysString, startHour, endHour);
+            serverRequest.addEmptyQueues(queueDaysString, startHour, endHour);
         };
         AlertDialog.showAlertDialog(alertTitle,"",doIfUserPressOk);
     }

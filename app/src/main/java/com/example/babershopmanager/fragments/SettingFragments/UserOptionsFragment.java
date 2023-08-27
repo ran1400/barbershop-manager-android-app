@@ -148,7 +148,6 @@ public class UserOptionsFragment extends Fragment
 
     private void addQueueDatePickerAns()
     {
-
         if (DateHelper.checkIfFutureDate(DateTimePickerData.data,DateTimePickerData.hour ,DateTimePickerData.min))  //make toast if false
         {
             String title = "לקבוע את התור?";
@@ -198,13 +197,13 @@ public class UserOptionsFragment extends Fragment
         {
             doBeforeServerRequest();
             ServerRequest serverRequest = new ServerRequest((String response) ->Setting.cleanQueueAns(response));
-            serverRequest.cleanReservedQueueByMail(user.queue,user.mail);
+            serverRequest.cleanReservedQueue(user.queue,user.mail);
         };
         SimpleMethod doIfOp2 = ()->
         {
             doBeforeServerRequest();
             ServerRequest serverRequest = new ServerRequest((String response) ->Setting.deleteQueueAns(response));
-            serverRequest.deleteUserReservedQueueByMail(user.queue,user.mail);
+            serverRequest.deleteReservedQueueByMail(user.queue,user.mail);
         };
         AlertDialog.showAlertDialog(title,msg,"1","2",doIfOp1,doIfOp2);
     }
@@ -222,14 +221,14 @@ public class UserOptionsFragment extends Fragment
                 doBeforeServerRequest();
                 String newQueue = DateHelper.getTime(DateTimePickerData.data,DateTimePickerData.hour,DateTimePickerData.min);
                 ServerRequest serverRequest = new ServerRequest((String response) -> Setting.changeQueueAns(response));
-                serverRequest.changeReservedQueueByMail(user.mail, user.queue, newQueue, true);
+                serverRequest.changeReservedQueue(user.mail, user.queue, newQueue, true);
             };
             SimpleMethod doIfOp2 = () ->
             {
                 doBeforeServerRequest();
                 String newQueue = DateHelper.getTime(DateTimePickerData.data,DateTimePickerData.hour,DateTimePickerData.min);
                 ServerRequest serverRequest = new ServerRequest((String response) -> Setting.changeQueueAns(response));
-                serverRequest.changeReservedQueueByMail(user.mail, user.queue, newQueue, false);
+                serverRequest.changeReservedQueue(user.mail, user.queue, newQueue, false);
             };
             AlertDialog.showAlertDialog(alertTitle, alertMsg, "1", "2", doIfOp1, doIfOp2);
         }
@@ -288,7 +287,7 @@ public class UserOptionsFragment extends Fragment
             else
                 haveQueue = user.queue.length() >0;
             ServerRequest serverRequest = new ServerRequest((String response) ->Setting.removeUserAns(response,haveQueue));
-            serverRequest.removeUser(user.mail);
+            serverRequest.removeUser(user.mail,user.name);
         };
         AlertDialog.showAlertDialog(alertTitle,alertMsg,doIfUserPressOk);
     }
