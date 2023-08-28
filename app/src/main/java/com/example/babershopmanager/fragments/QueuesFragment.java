@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -49,7 +48,7 @@ public class QueuesFragment extends Fragment
         refreshQueuesBtn = view.findViewById(R.id.refreshQueuesBtn);
         noInternetText = view.findViewById(R.id.noInternetText);
         refreshQueuesBtn.setOnClickListener(this::refreshQueues);
-        chooseQueueList.setOnCheckedChangeListener(this::RGOnClickListener);
+        chooseQueueList.setOnCheckedChangeListener(this::chooseQueuesRadioGroupOnClickListener);
         pastReservedQueuesRadioBtn.setOnCheckedChangeListener(this::pastReservedQueuesListener);
         if (QueuesData.haveInternet == false)
             showNoInternet();
@@ -150,7 +149,7 @@ public class QueuesFragment extends Fragment
     }
 
 
-    public void RGOnClickListener(RadioGroup radioGroup, int checkedId)
+    public void chooseQueuesRadioGroupOnClickListener(RadioGroup radioGroup, int checkedId)
     {
         if (reservedQueuesRadioBtn.isChecked())
         {
