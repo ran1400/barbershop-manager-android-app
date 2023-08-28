@@ -43,11 +43,11 @@ public class SettingFragment extends Fragment
         loadingView = view.findViewById(R.id.settingFragmentLoadingView);
         getUsersBtn = view.findViewById(R.id.getUsersBtn);
         sendMsgBtn = view.findViewById(R.id.sendMsgBtn);
+        notificationSettingBtn = view.findViewById(R.id.notificationSettingBtn);
+        blockSystemSwitch = view.findViewById(R.id.blockSystemSwitch);
         getUsersBtn.setOnClickListener(this::getUsersBtn);
         sendMsgBtn.setOnClickListener(this::sendMsgBtn);
-        notificationSettingBtn = view.findViewById(R.id.notificationSettingBtn);
         notificationSettingBtn.setOnClickListener(this::notificationSettingBtn);
-        blockSystemSwitch = view.findViewById(R.id.blockSystemSwitch);
         blockSystemSwitch.setOnClickListener(this::blockSystemSwitchClicked);
         view.post(()->blockSystemSwitch.setChecked(SettingData.userCmdIsLock)); //post for wait to finish of build fragment
         updateLoadingView();

@@ -57,7 +57,7 @@ public class SendMsgFragment extends Fragment
         sendMsgBtn.setOnClickListener(this::sendMsgBtn);
         inAppUpdateMsgBtn.setOnClickListener(this::setInAppMsgBtn);
         sendTestMsgBtn.setOnClickListener(this::sendTestMsgBtn);
-        inAppMsgEditText.setOnTouchListener(inAppMsgEditTextTouchListener());
+        inAppMsgEditText.setOnTouchListener(this::inAppMsgEditTextTouchListener);
         cancelInAppMsgCheckBox.setOnClickListener(this::cancelInAppMsgCheckBoxTouchListener);
         selectMsgSwitch.setOnCheckedChangeListener((RadioGroup group, int checkedId) -> selectMsgSwitchChanged(checkedId));
         updateViews();
@@ -88,17 +88,10 @@ public class SendMsgFragment extends Fragment
             sendPushMsgNotInRequest();
     }
 
-    private  View.OnTouchListener inAppMsgEditTextTouchListener()
+    public boolean inAppMsgEditTextTouchListener(View view, MotionEvent motionEvent)
     {
-        return new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent)
-            {
-                cancelInAppMsgCheckBox.setChecked(false);
-                return false;
-            }
-        };
+        cancelInAppMsgCheckBox.setChecked(false);
+        return false;
     }
 
     private void cancelInAppMsgCheckBoxTouchListener(View view)

@@ -59,9 +59,8 @@ public class AddQueuesFragment extends Fragment
         tbDaysArray[4] = view.findViewById(R.id.tb5);
         tbDaysArray[5] = view.findViewById(R.id.tb6);
         tbDaysArray[6] = view.findViewById(R.id.tb7);
-        CompoundButton.OnCheckedChangeListener tbChangedListener = getTbChangedListener();
         for (int i =0 ; i < 7 ; i++)
-            tbDaysArray[i].setOnCheckedChangeListener(tbChangedListener);
+            tbDaysArray[i].setOnCheckedChangeListener(this::TogglesButtonsChangedListener);
         addQueuesDateStartEditText = view.findViewById(R.id.addQueuesDateStartEditText);
         addQueuesHourStartEditText = view.findViewById(R.id.addQueuesHourStartEditText);
         addQueuesDateEndEditText = view.findViewById(R.id.addQueuesDateEndEditText);
@@ -77,7 +76,7 @@ public class AddQueuesFragment extends Fragment
         addQueuesLoadingView = view.findViewById(R.id.addQueuesLoadingView);
         addQueueWindows = view.findViewById(R.id.addQueueWindow);
         addQueuesWindows = view.findViewById(R.id.addQueuesWindow);
-        spaceBetweenQueuesEditText.setOnTouchListener(getSpaceEditTextTouchListener());
+        spaceBetweenQueuesEditText.setOnTouchListener(this::SpaceEditTextTouchListener);
         addQueuesDateStartEditText.setOnClickListener(this::addQueuesDateStartEditTextClicked);
         addQueuesDateEndEditText.setOnClickListener(this::addQueuesDateEndEditTextClicked);
         addQueuesHourStartEditText.setOnClickListener(this::addQueuesHourStartEditTextClicked);
@@ -111,17 +110,10 @@ public class AddQueuesFragment extends Fragment
             switchToAddQueueWindow();
     }
 
-    private  View.OnTouchListener getSpaceEditTextTouchListener()
+    public boolean SpaceEditTextTouchListener(View view, MotionEvent motionEvent)
     {
-        return new View.OnTouchListener()
-        {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent)
-            {
-                spaceBetweenQueuesEditText.setText("");
-                return false;
-            }
-        };
+        spaceBetweenQueuesEditText.setText("");
+        return false;
     }
 
     private void fillTbDaysArray()
@@ -130,39 +122,32 @@ public class AddQueuesFragment extends Fragment
             tbDaysArray[i].setChecked(AddQueuesData .daysTbState[i]);
     }
 
-    private CompoundButton.OnCheckedChangeListener getTbChangedListener()
+    public void TogglesButtonsChangedListener(CompoundButton compoundButton, boolean bool)
     {
-        return new CompoundButton.OnCheckedChangeListener()
+        switch (compoundButton.getId())
         {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean bool)
-            {
-                switch (compoundButton.getId())
-                {
-                    case R.id.tb1 :
-                        AddQueuesData.daysTbState[0] = bool;
-                        break;
-                    case R.id.tb2 :
-                        AddQueuesData.daysTbState[1] = bool;
-                        break;
-                    case R.id.tb3 :
-                        AddQueuesData.daysTbState[2] = bool;
-                        break;
-                    case R.id.tb4 :
-                        AddQueuesData.daysTbState[3] = bool;
-                        break;
-                    case R.id.tb5 :
-                        AddQueuesData.daysTbState[4] = bool;
-                        break;
-                    case R.id.tb6 :
-                        AddQueuesData.daysTbState[5] = bool;
-                        break;
-                    case R.id.tb7 :
-                        AddQueuesData.daysTbState[6] = bool;
-                        break;
-                }
-            }
-        };
+            case R.id.tb1 :
+                AddQueuesData.daysTbState[0] = bool;
+                break;
+            case R.id.tb2 :
+                AddQueuesData.daysTbState[1] = bool;
+                break;
+            case R.id.tb3 :
+                AddQueuesData.daysTbState[2] = bool;
+                break;
+            case R.id.tb4 :
+                AddQueuesData.daysTbState[3] = bool;
+                break;
+            case R.id.tb5 :
+                AddQueuesData.daysTbState[4] = bool;
+                break;
+            case R.id.tb6 :
+                AddQueuesData.daysTbState[5] = bool;
+                break;
+            case R.id.tb7 :
+                AddQueuesData.daysTbState[6] = bool;
+                break;
+        }
     }
 
     private void addQueueFillEditTexts()

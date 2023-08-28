@@ -36,7 +36,6 @@ public class NotificationsFragment extends Fragment
     private Switch sendNotificationsRemoveUser;
 
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)

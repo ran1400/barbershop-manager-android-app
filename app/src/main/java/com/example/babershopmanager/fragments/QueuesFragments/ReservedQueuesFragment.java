@@ -51,6 +51,7 @@ public class ReservedQueuesFragment extends Fragment
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_reserved_queues, container, false);
+        SharedData.reservedQueuesFragment = this;
         loadingView = view.findViewById(R.id.reservedQueuesFragmentLoadingView);
         reservedQueuesFrame = view.findViewById(R.id.reservedQueuesFrame);
         reservedQueuesLayout = view.findViewById(R.id.reservedQueuesScrollViewLayout);
@@ -61,7 +62,6 @@ public class ReservedQueuesFragment extends Fragment
         popUpDeleteBtn = view.findViewById(R.id.popUpDeleteBtn);
         popUpCleanBtn = view.findViewById(R.id.popUpCleanBtn);
         Button popUpCallBtn = view.findViewById(R.id.popUpCallBtn);
-        SharedData.reservedQueuesFragment = this;
         popUpBackBtn.setOnClickListener(this::popUpBackBtn);
         popUpCallBtn.setOnClickListener(this::popUpCallBtn);
         popUpDeleteBtn.setOnClickListener(this::popUpDeleteBtn);

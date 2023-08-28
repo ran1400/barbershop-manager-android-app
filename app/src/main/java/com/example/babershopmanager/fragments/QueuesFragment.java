@@ -49,8 +49,8 @@ public class QueuesFragment extends Fragment
         refreshQueuesBtn = view.findViewById(R.id.refreshQueuesBtn);
         noInternetText = view.findViewById(R.id.noInternetText);
         refreshQueuesBtn.setOnClickListener(this::refreshQueues);
-        chooseQueueList.setOnCheckedChangeListener(new RGOnClickListener());
-        pastReservedQueuesRadioBtn.setOnCheckedChangeListener(new pastReservedQueuesListener());
+        chooseQueueList.setOnCheckedChangeListener(this::RGOnClickListener);
+        pastReservedQueuesRadioBtn.setOnCheckedChangeListener(this::pastReservedQueuesListener);
         if (QueuesData.haveInternet == false)
             showNoInternet();
         if (reservedQueuesRadioBtn.isChecked())
@@ -83,17 +83,13 @@ public class QueuesFragment extends Fragment
     }
 
 
-    private class pastReservedQueuesListener implements RadioButton.OnCheckedChangeListener
+    public void pastReservedQueuesListener(CompoundButton compoundButton, boolean checked)
     {
-        @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean checked)
+        if (checked)
         {
-            if (checked)
-            {
-                chooseQueueList.clearCheck();
-                showPastReservedQueues();
-                refreshQueuesBtn.setVisibility(View.INVISIBLE);
-            }
+            chooseQueueList.clearCheck();
+            showPastReservedQueues();
+            refreshQueuesBtn.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -154,23 +150,19 @@ public class QueuesFragment extends Fragment
     }
 
 
-    private class RGOnClickListener implements RadioGroup.OnCheckedChangeListener
+    public void RGOnClickListener(RadioGroup radioGroup, int checkedId)
     {
-        @Override
-        public void onCheckedChanged(RadioGroup radioGroup, int checkedId)
+        if (reservedQueuesRadioBtn.isChecked())
         {
-           if (reservedQueuesRadioBtn.isChecked())
-           {
-               pastReservedQueuesRadioBtn.setChecked(false);
-               showReservedQueues();
-               refreshQueuesBtn.setVisibility(View.VISIBLE);
-           }
-           else if (emptyQueuesRadioBtn.isChecked())
-           {
-               pastReservedQueuesRadioBtn.setChecked(false);
-               showEmptyQueues();
-               refreshQueuesBtn.setVisibility(View.VISIBLE);
-           }
+            pastReservedQueuesRadioBtn.setChecked(false);
+            showReservedQueues();
+            refreshQueuesBtn.setVisibility(View.VISIBLE);
+        }
+        else if (emptyQueuesRadioBtn.isChecked())
+        {
+            pastReservedQueuesRadioBtn.setChecked(false);
+            showEmptyQueues();
+            refreshQueuesBtn.setVisibility(View.VISIBLE);
         }
     }
 

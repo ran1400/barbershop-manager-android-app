@@ -68,12 +68,10 @@ public class DeleteQueuesFragment extends Fragment
         deleteQueueHourEditText.setOnClickListener(this::deleteQueueHourEditTextClicked);
         deleteQueuesFromEditText.setOnClickListener(this::deleteQueuesFromEditTextClicked);
         deleteQueuesToEditText.setOnClickListener(this::deleteQueuesToEditTextClicked);
-        CompoundButton.OnCheckedChangeListener deleteQueueCheckBoxListener = getDeleteQueueCheckBoxListener();
-        CompoundButton.OnCheckedChangeListener deleteQueuesCheckBoxListener = getDeleteQueuesCheckBoxListener();
-        deleteEmptyQueueCheckBox.setOnCheckedChangeListener(deleteQueueCheckBoxListener);
-        deleteReservedQueueCheckBox.setOnCheckedChangeListener(deleteQueueCheckBoxListener);
-        deleteEmptyQueuesCheckBox.setOnCheckedChangeListener(deleteQueuesCheckBoxListener);
-        deleteReservedQueuesCheckBox.setOnCheckedChangeListener(deleteQueuesCheckBoxListener);
+        deleteEmptyQueueCheckBox.setOnCheckedChangeListener(this::deleteQueueCheckBoxListener);
+        deleteReservedQueueCheckBox.setOnCheckedChangeListener(this::deleteQueueCheckBoxListener);
+        deleteEmptyQueuesCheckBox.setOnCheckedChangeListener(this::deleteQueuesCheckBoxListener);
+        deleteReservedQueuesCheckBox.setOnCheckedChangeListener(this::deleteQueuesCheckBoxListener);
         switchToDeleteQueueWindowsBtn.setOnClickListener(this::switchToDeleteQueueWindow);
         switchToDeleteQueuesWindowsBtn.setOnClickListener(this::switchToDeleteQueuesWindow);
         deleteQueuesBtn.setOnClickListener(this::deleteQueues);
@@ -412,41 +410,27 @@ public class DeleteQueuesFragment extends Fragment
             return true;
     }
 
-    private CompoundButton.OnCheckedChangeListener getDeleteQueuesCheckBoxListener()
+    public void deleteQueuesCheckBoxListener(CompoundButton buttonView, boolean isChecked)
     {
-        return new CompoundButton.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if (buttonView.getId() == R.id.deleteEmptyQueuesCheckBox)
-                    DeleteQueuesData.cbDeleteEmptyQueues = isChecked;
-                else //(buttonView.getId() == R.id.deleteEmptyQueuesCheckBox)
-                    DeleteQueuesData.cbDeleteReservedQueues = isChecked;
-                if ( (deleteEmptyQueuesCheckBox.isChecked() == false) && (deleteReservedQueuesCheckBox.isChecked() == false) )
-                    deleteQueuesBtn.setEnabled(false);
-                else
-                    deleteQueuesBtn.setEnabled(true);
-            }
-        };
+        if (buttonView.getId() == R.id.deleteEmptyQueuesCheckBox)
+            DeleteQueuesData.cbDeleteEmptyQueues = isChecked;
+        else //(buttonView.getId() == R.id.deleteEmptyQueuesCheckBox)
+            DeleteQueuesData.cbDeleteReservedQueues = isChecked;
+        if ( (deleteEmptyQueuesCheckBox.isChecked() == false) && (deleteReservedQueuesCheckBox.isChecked() == false) )
+            deleteQueuesBtn.setEnabled(false);
+        else
+            deleteQueuesBtn.setEnabled(true);
     }
 
-    private CompoundButton.OnCheckedChangeListener getDeleteQueueCheckBoxListener()
+    public void deleteQueueCheckBoxListener(CompoundButton buttonView, boolean isChecked)
     {
-        return new CompoundButton.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
-                if (buttonView.getId() == R.id.deleteEmptyQueueCheckBox)
-                    DeleteQueuesData.cbDeleteEmptyQueue = isChecked;
-                else //(buttonView.getId() == R.id.deleteEmptyQueueCheckBox)
-                    DeleteQueuesData.cbDeleteReservedQueue = isChecked;
-                if ( (deleteEmptyQueueCheckBox.isChecked() == false) && (deleteReservedQueueCheckBox.isChecked() == false) )
-                    deleteQueueBtn.setEnabled(false);
-                else
-                    deleteQueueBtn.setEnabled(true);
-            }
-        };
+        if (buttonView.getId() == R.id.deleteEmptyQueueCheckBox)
+            DeleteQueuesData.cbDeleteEmptyQueue = isChecked;
+        else //(buttonView.getId() == R.id.deleteEmptyQueueCheckBox)
+            DeleteQueuesData.cbDeleteReservedQueue = isChecked;
+        if ( (deleteEmptyQueueCheckBox.isChecked() == false) && (deleteReservedQueueCheckBox.isChecked() == false) )
+            deleteQueueBtn.setEnabled(false);
+        else
+            deleteQueueBtn.setEnabled(true);
     }
 }
