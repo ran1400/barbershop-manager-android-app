@@ -1,6 +1,5 @@
 package com.example.babershopmanager.server;
 
-import android.util.Log;
 import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -33,7 +32,7 @@ public class ServerRequest
 
     public void changeReservedQueue(String userMail ,String prevQueue,String newQueue,boolean addToEmptyQueue)
     {
-        url = "https://ran140009g.online/commands/manager/change_reserved_queue.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/change_reserved_queue.php";
         map.put("newQueue",newQueue);
         map.put("mail",userMail);
         map.put("prevQueue",prevQueue);
@@ -47,24 +46,21 @@ public class ServerRequest
 
     public void enterToTheApp()
     {
-        url = "https://ran140009g.online/commands/manager/enter_to_the_app.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/enter_to_the_app.php";
         sendRequest();
     }
 
     public void setInAppMsg(String msg)
     {
-        url = "https://ran140009g.online/commands/manager/write_msg.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/write_msg.php";
         map.put("msg",msg);
         sendRequest();
     }
-
-    // never send notifications to manager on change in queues
     public void neverSendQueueUpdates()
     {
         setSecondsAmountToSendNotification(0);
     }
 
-    // ever send notifications to manager on change in queues
     public void everSendQueueUpdates()
     {
         setSecondsAmountToSendNotification(1);
@@ -73,14 +69,14 @@ public class ServerRequest
     // if have change in queue x seconds from now - notification will send to manager
     public void setSecondsAmountToSendNotification(int seconds)
     {
-        url = "https://ran140009g.online/commands/manager/set_seconds_amount_to_send_notification.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/set_seconds_amount_to_send_notification.php";
         map.put("seconds",String.valueOf(seconds));
         sendRequest();
     }
 
     public void setSendUserQueueNotifications(boolean bool) // if true - send notifications to user on change on his queues
     {
-        url = "https://ran140009g.online/commands/manager/set_send_user_queue_notifications.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/set_send_user_queue_notifications.php";
         if (bool)
             map.put("sendNotifications","true");
         else
@@ -90,7 +86,7 @@ public class ServerRequest
 
     public void setSendUserRemoveNotifications(boolean bool) // if true - send notifications to user if he removed
     {
-        url = "https://ran140009g.online/commands/manager/set_send_user_remove_notifications.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/set_send_user_remove_notifications.php";
         if (bool)
             map.put("sendNotifications","true");
         else
@@ -100,7 +96,7 @@ public class ServerRequest
 
     public void setSendUserBlockNotifications(boolean bool) // if true - send notifications to user if he blocked
     {
-        url = "https://ran140009g.online/commands/manager/set_send_user_block_notifications.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/set_send_user_block_notifications.php";
         if (bool)
             map.put("sendNotifications","true");
         else
@@ -110,7 +106,7 @@ public class ServerRequest
 
     public void setSendUserUnblockNotifications(boolean bool) // if true - send notifications to user if he unblocked
     {
-        url = "https://ran140009g.online/commands/manager/set_send_user_unblock_notifications.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/set_send_user_unblock_notifications.php";
         if (bool)
             map.put("sendNotifications","true");
         else
@@ -120,13 +116,13 @@ public class ServerRequest
 
     public void getNotificationsSetting()
     {
-        url = "https://ran140009g.online/commands/manager/get_notifications_setting.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/get_notifications_setting.php";
         sendRequest();
     }
 
     public void addReservedQueue(String mail,String queue)
     {
-        url = "https://ran140009g.online/commands/manager/add_reserved_queue.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/add_reserved_queue.php";
         map.put("mail",mail);
         map.put("newDate",queue);
         sendRequest();
@@ -134,31 +130,31 @@ public class ServerRequest
 
     public void unlockUserCmd()
     {
-        url = "https://ran140009g.online/commands/manager/unlock_user_cmd.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/unlock_user_cmd.php";
         sendRequest();
     }
 
     public void lockUserCmd()
     {
-        url = "https://ran140009g.online/commands/manager/lock_user_cmd.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/lock_user_cmd.php";
         sendRequest();
     }
 
     public void getInAppMsg()
     {
-        url = "https://ran140009g.online/commands/manager/get_msg.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/get_msg.php";
         sendRequest();
     }
 
     public void getUsersList()
     {
-        url = "https://ran140009g.online/commands/manager/get_all_users.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/get_all_users.php";
         sendRequest();
     }
 
     public void deleteReservedQueueByMail(String queue, String mail)
     {
-        url = "https://ran140009g.online/commands/manager/remove_reserved_queue_by_mail.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/remove_reserved_queue_by_mail.php";
         map.put("date",queue);
         map.put("mail",mail);
         sendRequest();
@@ -166,7 +162,7 @@ public class ServerRequest
 
     public void cleanReservedQueue(String queue, String mail)
     {
-        url = "https://ran140009g.online/commands/manager/remove_reserved_queue_and_add_empty_queue.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/remove_reserved_queue_and_add_empty_queue.php";
         map.put("date",queue);
         map.put("mail",mail);
         sendRequest();
@@ -174,21 +170,21 @@ public class ServerRequest
 
     public void deleteEmptyQueue(String date)
     {
-        url = "https://ran140009g.online/commands/manager/remove_empty_queue.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/remove_empty_queue.php";
         map.put("date", date);
         sendRequest();
     }
 
     public void deleteEmptyOrReservedQueue(String date)
     {
-        url = "https://ran140009g.online/commands/manager/remove_empty_or_reserved_queue.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/remove_empty_or_reserved_queue.php";
         map.put("date", date);
         sendRequest();
     }
 
     public void deleteReservedQueueByTime(String date)
     {
-        url = "https://ran140009g.online/commands/manager/remove_reserved_queue_by_time.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/remove_reserved_queue_by_time.php";
         map.put("date", date);
         sendRequest();
     }
@@ -196,7 +192,7 @@ public class ServerRequest
     
     public void getPastReservedQueues(String startDate,String endDate)
     {
-        url = "https://ran140009g.online/commands/manager/get_past_reserved_queues_between_dates.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/get_past_reserved_queues_between_dates.php";
         map.put("startTime",startDate);
         map.put("endTime",endDate);
         sendRequest();
@@ -205,13 +201,13 @@ public class ServerRequest
 
     public void getReservedQueues()
     {
-        url = "https://ran140009g.online/commands/manager/ask_for_future_reserved_queues.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/ask_for_future_reserved_queues.php";
         sendRequest();
     }
 
     public void getEmptyQueues()
     {
-        url = "https://ran140009g.online/commands/manager/ask_for_future_empty_queues.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/ask_for_future_empty_queues.php";
         sendRequest();
     }
 
@@ -219,7 +215,7 @@ public class ServerRequest
     {
         map.put("firstDate", firstDate);
         map.put("secondDate", secondDate);
-        url = "https://ran140009g.online/commands/manager/remove_empty_queues_between_dates.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/remove_empty_queues_between_dates.php";
         sendRequest();
     }
 
@@ -227,7 +223,7 @@ public class ServerRequest
     {
         map.put("firstDate", firstDate);
         map.put("secondDate", secondDate);
-        url = "https://ran140009g.online/commands/manager/remove_queues_between_dates.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/remove_queues_between_dates.php";
         sendRequest();
     }
 
@@ -235,13 +231,13 @@ public class ServerRequest
     {
         map.put("firstDate", firstDate);
         map.put("secondDate", secondDate);
-        url = "https://ran140009g.online/commands/manager/remove_reserved_queues_between_dates.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/remove_reserved_queues_between_dates.php";
         sendRequest();
     }
 
     public void addEmptyQueues(String queueDays, String startHour, String endHour)
     {
-        url = "https://ran140009g.online/commands/manager/add_empty_queues.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/add_empty_queues.php";
         map.put("datesList",queueDays);
         map.put("startHour",startHour);
         map.put("endHour",endHour);
@@ -251,14 +247,14 @@ public class ServerRequest
 
     public void addEmptyQueue(String time)
     {
-        url = "https://ran140009g.online/commands/manager/add_empty_queue.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/add_empty_queue.php";
         map.put("time",time);
         sendRequest();
     }
 
     public void removeUser(String userMail,String userName)
     {
-        url = "https://ran140009g.online/commands/manager/remove_user.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/remove_user.php";
         map.put("mail",userMail);
         map.put("name",userName);
         sendRequest();
@@ -266,14 +262,14 @@ public class ServerRequest
 
     public void blockUser(String mail)
     {
-        url = "https://ran140009g.online/commands/manager/block_user.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/block_user.php";
         map.put("mail",mail);
         sendRequest();
     }
 
     public void unblockUser(String mail)
     {
-        url = "https://ran140009g.online/commands/manager/unblock_user.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/unblock_user.php";
         map.put("mail",mail);
         sendRequest();
     }
@@ -281,15 +277,12 @@ public class ServerRequest
 
     private void sendRequest()
     {
-        Log.d("sendServerRequest",url);
-        Log.d("sendServerRequest",map.toString());
         StringRequest sr = new StringRequest(1, url,
                 new Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String response)
                     {
-                        Log.d("sendServerRequest",response);
                         serverResponseHandle.doWhenGetResponseFromTheServer(response);
                     }
                 }, new Response.ErrorListener()
@@ -297,7 +290,6 @@ public class ServerRequest
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Log.d("sendServerRequest",REQUEST_ERROR);
                 serverResponseHandle.doWhenGetResponseFromTheServer(REQUEST_ERROR);
             }
         })
@@ -340,7 +332,6 @@ public class ServerRequest
 
     public static boolean requestAnsHelperWithoutToast(String response)
     {
-        Log.d("response64",response);
         if (response.equals(ServerRequest.REQUEST_ERROR))
             return false;
         if (response.equals("connection failed"))
