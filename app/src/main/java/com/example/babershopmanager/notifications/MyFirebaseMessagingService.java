@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,7 +25,7 @@ import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService
 {
-    private static final String AUTHORIZATION_KEY = "key=AAAAO6sXHJE:APA91bGIQKppTa4hxgJiOd3XGT46m7axls80Oj0XCYNqbwC1NTdk5xHSy7cCbrPAvA_--ip4Z6UdsoxPVMzIwF7p5x_orNqKQ9ILMCps4mWGg9ofmwNo6ACM7Q2XRwQ5h0IsyaiCF1gZ";
+    private static final String USERS_AUTHORIZATION_KEY = "key=AAAAO6sXHJE:APA91bGIQKppTa4hxgJiOd3XGT46m7axls80Oj0XCYNqbwC1NTdk5xHSy7cCbrPAvA_--ip4Z6UdsoxPVMzIwF7p5x_orNqKQ9ILMCps4mWGg9ofmwNo6ACM7Q2XRwQ5h0IsyaiCF1gZ";
     private static final String URL  = "https://fcm.googleapis.com/fcm/send";
 
     public static void sendNotification(String topic, String title, String body,String channelId)
@@ -65,7 +64,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String,String> header = new HashMap<>();
                     header.put("content-type","application/json");
-                    header.put("authorization",AUTHORIZATION_KEY);
+                    header.put("authorization", USERS_AUTHORIZATION_KEY);
                     return header;
                 }
             };
