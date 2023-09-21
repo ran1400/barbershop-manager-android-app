@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,10 +26,10 @@ import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService
 {
-    private static final String AUTHORIZATION_KEY = "key=AAAA30Zbkq0:APA91bHWijQ3hRJ5tdb4saLtUMbxL-q5xIDiCxahDP5e3HjGjEH2UCU7_JhR-nNNxoBiCGm3OxdiFCtiEbzblABs5d9yvkP7mTqjPstuNcfC8Woxo2-yxm1JrJ9CUHU_I30sVR_9GvNR";
+    private static final String AUTHORIZATION_KEY = "key=AAAAO6sXHJE:APA91bGIQKppTa4hxgJiOd3XGT46m7axls80Oj0XCYNqbwC1NTdk5xHSy7cCbrPAvA_--ip4Z6UdsoxPVMzIwF7p5x_orNqKQ9ILMCps4mWGg9ofmwNo6ACM7Q2XRwQ5h0IsyaiCF1gZ";
     private static final String URL  = "https://fcm.googleapis.com/fcm/send";
 
-    public static void sendNotification(String topic, String title, String body,String channelId,boolean msg)
+    public static void sendNotification(String topic, String title, String body,String channelId)
     {
         RequestQueue mRequestQue = Volley.newRequestQueue(SharedData.mainActivity);
         JSONObject json = new JSONObject();
@@ -47,8 +49,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService
                         @Override
                         public void onResponse(JSONObject response)
                         {
-                            if (msg == false)
-                                return;
                             SharedData.sendMsgFragment.sendPushMsgNotInRequest();
                             Toast.makeText(SharedData.mainActivity, "ההודעה נשלחה", Toast.LENGTH_SHORT).show();
                         }
@@ -56,8 +56,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService
                 @Override
                 public void onErrorResponse(VolleyError error)
                 {
-                    if (msg == false)
-                        return;
                     SharedData.sendMsgFragment.sendPushMsgNotInRequest();
                     Toast.makeText(SharedData.mainActivity, "השליחה נכשלה", Toast.LENGTH_SHORT).show();
                 }
@@ -83,19 +81,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService
             channelId = "quietManagerMsg";
         else
             channelId = "managerMsg";
-       sendNotification("managerMsgs",title,body,channelId,true);
+       sendNotification("managerMsgs",title,body,channelId);
     }
-
-    public static void sendTestNotification(String title, String body,boolean quietMsg)
-    {
-        String channelId;
-        if (quietMsg)
-            channelId = "testMsgQuiet";
-        else
-            channelId = "testMsg";
-        sendNotification("managerTests",title,body,channelId,true);
-    }
-
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage)

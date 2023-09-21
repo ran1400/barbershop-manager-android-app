@@ -17,6 +17,9 @@ import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
 import com.example.babershopmanager.R;
 import com.example.babershopmanager.fragments.dialogFragments.SimpleMethod;
 import com.example.babershopmanager.fragments.dialogFragments.AlertDialog;
@@ -196,9 +199,18 @@ public class SendMsgFragment extends Fragment
 
     private void sendTestMsgBtn(View view)
     {
-        sendPushMsgInRequest();
         String title = pushMsgTitleEditTest.getText().toString();
         String body = pushMsgBodyEditText.getText().toString();
-        MyFirebaseMessagingService.sendTestNotification(title,body,quietMsgCheckBox.isChecked());
+        String channelId;
+        if (quietMsgCheckBox.isChecked())
+            channelId = "testMsgQuiet";
+        else
+            channelId = "testMsg";
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), channelId)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title)
+                .setContentText(body);
+        NotificationManagerCompat manager = NotificationManagerCompat.from(getActivity());
+        manager.notify(0, builder.build());
     }
 }
