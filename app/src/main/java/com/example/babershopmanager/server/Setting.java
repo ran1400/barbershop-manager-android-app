@@ -182,7 +182,10 @@ public class Setting
             QueuesData.askForReservedQueues=true;
             if (SharedData.isSettingCrntWindows() &&
                     (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+            {
                 SharedData.settingFragment.askForUsersList();
+                SharedData.settingFragment.showGetUsersIsClicked();
+            }
             else
             {
                 SettingData.btnClicked = null;
@@ -204,7 +207,10 @@ public class Setting
             QueuesData.askForEmptyQueues=true;
             if (SharedData.isSettingCrntWindows() &&
                     (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+            {
                 SharedData.settingFragment.askForUsersList();
+                SharedData.settingFragment.showGetUsersIsClicked();
+            }
             else
             {
                 SettingData.btnClicked = null;
@@ -228,7 +234,10 @@ public class Setting
             QueuesData.askForReservedQueues = true;
             if (SharedData.isSettingCrntWindows() &&
                     (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+            {
                 SharedData.settingFragment.askForUsersList();
+                SharedData.settingFragment.showGetUsersIsClicked();
+            }
             else
             {
                 SettingData.btnClicked = null;
@@ -254,7 +263,10 @@ public class Setting
             QueuesData.askForEmptyQueues = true;
             if (SharedData.isSettingCrntWindows() &&
                     (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+            {
                 SharedData.settingFragment.askForUsersList();
+                SharedData.settingFragment.showGetUsersIsClicked();
+            }
             else
             {
                 SettingData.btnClicked = null;
@@ -274,7 +286,10 @@ public class Setting
             Toast.makeText(SharedData.mainActivity,"חסימת המשתמש הוסרה", Toast.LENGTH_SHORT).show();
             if (SharedData.isSettingCrntWindows() &&
                     (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+            {
                 SharedData.settingFragment.askForUsersList();
+                SharedData.settingFragment.showGetUsersIsClicked();
+            }
             else
             {
                 SettingData.btnClicked = null;
@@ -296,7 +311,10 @@ public class Setting
                 QueuesData.askForReservedQueues=true;
             if (SharedData.isSettingCrntWindows() &&
                     (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+            {
                 SharedData.settingFragment.askForUsersList();
+                SharedData.settingFragment.showGetUsersIsClicked();
+            }
             else
             {
                 SettingData.btnClicked = null;
@@ -318,7 +336,10 @@ public class Setting
                 QueuesData.askForReservedQueues=true;
             if (SharedData.isSettingCrntWindows() &&
                     (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+            {
                 SharedData.settingFragment.askForUsersList();
+                SharedData.settingFragment.showGetUsersIsClicked();
+            }
             else
             {
                 SettingData.btnClicked = null;

@@ -138,7 +138,7 @@ public class SettingFragment extends Fragment
         serverRequest.getNotificationsSetting();
     }
 
-    private void showGetUsersIsClicked()
+    public void showGetUsersIsClicked()
     {
         getUsersBtn.setBackgroundColor(Color.GRAY);
         sendMsgBtn.setBackgroundColor(Color.BLUE);
