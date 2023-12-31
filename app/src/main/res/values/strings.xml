@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">babershop manager</string>
+    <string name="app_name">Barbershop Manager</string>
     <string name="chooseDate">בחר תאריך</string>
     <string name="chooseHour">בחר שעה</string>
 </resources>
