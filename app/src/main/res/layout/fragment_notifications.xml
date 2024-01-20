@@ -36,7 +36,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:text="קבל התראות על קביעה / מחיקה / שינוי של תורים :"
+                android:text="קבל התראות על קביעה / ביטול / שינוי של תורים :"
                 android:textSize="14sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
