@@ -39,7 +39,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService
             notificationObj.put("android_channel_id",channelId);
             notificationObj.put("title",title);
             notificationObj.put("body",body);
-
             json.put("notification",notificationObj);
 
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL,
