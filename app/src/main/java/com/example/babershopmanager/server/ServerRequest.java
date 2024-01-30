@@ -18,7 +18,7 @@ import java.util.Map;
 public class ServerRequest
 {
     public static final String REQUEST_ERROR = "requestError";
-    private static final String SECRET_KEY = "censored";
+    private static final String SECRET_KEY = "-censored-";
     private Map map ;
     private String url;
 
