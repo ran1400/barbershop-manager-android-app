@@ -15,7 +15,6 @@ import com.example.babershopmanager.sharedDate.SharedData;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class ServerRequest
 {
     public static final String REQUEST_ERROR = "requestError";
