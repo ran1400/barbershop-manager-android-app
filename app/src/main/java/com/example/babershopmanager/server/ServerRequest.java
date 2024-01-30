@@ -18,10 +18,9 @@ import java.util.Map;
 public class ServerRequest
 {
     public static final String REQUEST_ERROR = "requestError";
-    private static final String SECRET_KEY = "censored";
+    private static final String SECRET_KEY = "e36acfa7-34d3-4276-9658-59930d457fb3";
     private Map map ;
     private String url;
-
     private ServerResponseHandle serverResponseHandle;
 
     public ServerRequest(ServerResponseHandle serverResponseHandle)
@@ -43,7 +42,7 @@ public class ServerRequest
             map.put("addToEmptyQueue","no");
         sendRequest();
     }
-    
+
 
     public void enterToTheApp()
     {
@@ -190,7 +189,7 @@ public class ServerRequest
         sendRequest();
     }
 
-    
+
     public void getPastReservedQueues(String startDate,String endDate)
     {
         url = "https://ran-yehezkel.online/barbershop/commands/manager/get_past_reserved_queues_between_dates.php";
