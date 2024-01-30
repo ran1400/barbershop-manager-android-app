@@ -22,7 +22,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
-
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String URL = "https://fcm.googleapis.com/fcm/send";
 
