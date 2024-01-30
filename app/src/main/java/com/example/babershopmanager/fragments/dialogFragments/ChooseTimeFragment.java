@@ -1,7 +1,6 @@
 package com.example.babershopmanager.fragments.dialogFragments;
 
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import androidx.fragment.app.DialogFragment;
 import android.widget.TimePicker;
 
 
-@SuppressLint("ValidFragment")
 public class ChooseTimeFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener
 {
     public interface DoOnGetAns

@@ -9,6 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.babershopmanager.MainActivity;
+import com.example.babershopmanager.R;
 import com.example.babershopmanager.sharedDate.AddQueuesData;
 import com.example.babershopmanager.sharedDate.SharedData;
 import java.util.HashMap;
@@ -18,15 +19,14 @@ import java.util.Map;
 public class ServerRequest
 {
     public static final String REQUEST_ERROR = "requestError";
-    private static final String SECRET_KEY = "e36acfa7-34d3-4276-9658-59930d457fb3";
-    private Map map ;
+    private Map map;
     private String url;
     private ServerResponseHandle serverResponseHandle;
     public ServerRequest(ServerResponseHandle serverResponseHandle)
     {
         this.serverResponseHandle = serverResponseHandle;
         map  = new HashMap<String,String>();
-        map.put("secretKey", SECRET_KEY);
+        map.put("secretKey",SharedData.mainActivity.getString(R.string.serverManagerSecretKey));
     }
 
     public void changeReservedQueue(String userMail ,String prevQueue,String newQueue,boolean addToEmptyQueue)
@@ -299,6 +299,7 @@ public class ServerRequest
                 return map;
             }
         };
+        Log.d("checkMap",""+map);
         RequestQueue rq = Volley.newRequestQueue(SharedData.mainActivity);
         rq.add(sr);
     }
