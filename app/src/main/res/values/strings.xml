@@ -2,6 +2,6 @@
     <string name="app_name">Barbershop Manager</string>
     <string name="chooseDate">בחר תאריך</string>
     <string name="chooseHour">בחר שעה</string>
-    <string name="serverManagerSecretKey">e36acfa7-34d3-4276-9658-59930d457fb3</string>
-    <string name="notificationAuthorizationKey">key=AAAAO6sXHJE:APA91bGIQKppTa4hxgJiOd3XGT46m7axls80Oj0XCYNqbwC1NTdk5xHSy7cCbrPAvA_--ip4Z6UdsoxPVMzIwF7p5x_orNqKQ9ILMCps4mWGg9ofmwNo6ACM7Q2XRwQ5h0IsyaiCF1gZ</string>
+    <string name="serverManagerSecretKey">censored</string>
+    <string name="notificationAuthorizationKey">key=censored</string>
 </resources>
