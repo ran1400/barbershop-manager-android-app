@@ -22,7 +22,6 @@ public class ServerRequest
     private Map map ;
     private String url;
     private ServerResponseHandle serverResponseHandle;
-
     public ServerRequest(ServerResponseHandle serverResponseHandle)
     {
         this.serverResponseHandle = serverResponseHandle;
