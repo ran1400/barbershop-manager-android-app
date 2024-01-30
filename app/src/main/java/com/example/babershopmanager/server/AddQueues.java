@@ -28,7 +28,7 @@ public class AddQueues
 
     public static void addQueuesAns(String response)
     {
-        Log.d("addQueuesAns",response);
+        Log.d("check31",response);
         SharedData.addQueuesFragment.addQueuesAns();
         if (response.equals("reservedQueueExistInThisDates"))
         {
@@ -38,9 +38,7 @@ public class AddQueues
         {
             Toast.makeText(SharedData.mainActivity, "בקשה סורבה - ניסיון הוספת תור פנוי קיים", Toast.LENGTH_SHORT).show();
         }
-        else if ( requestAnsHelper(response) == false)
-            return;
-        else
+        else if ( requestAnsHelper(response)) // send toasts if false
         {
             if (response.equals("1"))
                 Toast.makeText(SharedData.mainActivity, "נוסף תור אחד", Toast.LENGTH_SHORT).show();
