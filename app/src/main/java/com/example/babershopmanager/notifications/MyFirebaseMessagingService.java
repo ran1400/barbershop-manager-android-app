@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService
 {
-    private static final String USERS_AUTHORIZATION_KEY = "key=AAAAO6sXHJE:APA91bGIQKppTa4hxgJiOd3XGT46m7axls80Oj0XCYNqbwC1NTdk5xHSy7cCbrPAvA_--ip4Z6UdsoxPVMzIwF7p5x_orNqKQ9ILMCps4mWGg9ofmwNo6ACM7Q2XRwQ5h0IsyaiCF1gZ";
+    private static final String USERS_AUTHORIZATION_KEY = "key=censored";
     private static final String URL  = "https://fcm.googleapis.com/fcm/send";
 
     public static void sendNotification(String topic, String title, String body,String channelId)
