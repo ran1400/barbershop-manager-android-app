@@ -32,7 +32,6 @@ import com.example.babershopmanager.utils.dataStructures.User;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-
 public class UserOptionsFragment extends Fragment
 {
     private TextView nameText,phoneText;
