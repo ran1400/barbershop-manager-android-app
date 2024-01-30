@@ -2,7 +2,7 @@ package com.example.babershopmanager.fragments.SettingFragments;
 
 import android.os.Bundle;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;

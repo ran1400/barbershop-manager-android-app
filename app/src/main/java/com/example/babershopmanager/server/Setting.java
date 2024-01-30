@@ -1,5 +1,7 @@
 package com.example.babershopmanager.server;
 
+import static com.example.babershopmanager.sharedDate.SharedData.mainActivity;
+
 import android.widget.Toast;
 
 import com.example.babershopmanager.sharedDate.QueuesData;
@@ -18,14 +20,14 @@ public class Setting
         SettingData.getSettingFragmentInRequest = false;
         if (response.equals(ServerRequest.REQUEST_ERROR))
         {
-            Toast.makeText(SharedData.mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
-            SettingData.btnClicked = null;
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+            SettingData.menuBtnClicked = null;
             SharedData.settingFragment.showNoneBtnIsClicked();
         }
         else if (response.equals("permission problem"))
         {
-            Toast.makeText(SharedData.mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
-            SettingData.btnClicked = null;
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+            SettingData.menuBtnClicked = null;
             SharedData.settingFragment.showNoneBtnIsClicked();
         }
         else
@@ -56,9 +58,9 @@ public class Setting
             SharedData.notificationsFragment.sendUserBlockNotificationsRefreshSwitch();
         }
         else if (response.equals(ServerRequest.REQUEST_ERROR))
-            Toast.makeText(SharedData.mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
         else if (response.equals("permission problem"))
-            Toast.makeText(SharedData.mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
         SettingData.sendUserBlockNotificationsInRequest = false;
         SharedData.notificationsFragment.enableSendNotificationsBlockUser();
         SharedData.notificationsFragment.checkIfGoneLoadingView();
@@ -77,9 +79,9 @@ public class Setting
             SharedData.notificationsFragment.sendUserRemoveNotificationsRefreshSwitch();
         }
         else if (response.equals(ServerRequest.REQUEST_ERROR))
-            Toast.makeText(SharedData.mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
         else if (response.equals("permission problem"))
-            Toast.makeText(SharedData.mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
         SettingData.sendUserRemoveNotificationsInRequest = false;
         SharedData.notificationsFragment.enableSendNotificationsRemoveUser();
         SharedData.notificationsFragment.checkIfGoneLoadingView();
@@ -98,9 +100,9 @@ public class Setting
             SharedData.notificationsFragment.sendUserUnblockNotificationsRefreshSwitch();
         }
         if (response.equals(ServerRequest.REQUEST_ERROR))
-            Toast.makeText(SharedData.mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
         else if (response.equals("permission problem"))
-            Toast.makeText(SharedData.mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
         SettingData.sendUserUnblockNotificationsInRequest = false;
         SharedData.notificationsFragment.enableSendNotificationsUnblockUser();
         SharedData.notificationsFragment.checkIfGoneLoadingView();
@@ -119,9 +121,9 @@ public class Setting
             SharedData.notificationsFragment.sendUserQueueNotificationsRefreshSwitch();
         }
         else if (response.equals(ServerRequest.REQUEST_ERROR))
-            Toast.makeText(SharedData.mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
         else if (response.equals("permission problem"))
-            Toast.makeText(SharedData.mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
         SettingData.sendUserQueueNotificationsInRequest = false;
         SharedData.notificationsFragment.enableSendNotificationsQueuesUpdates();
         SharedData.notificationsFragment.checkIfGoneLoadingView();
@@ -132,13 +134,13 @@ public class Setting
     public static void setSecondsAmountToSendNotificationAns(String response)
     {
         if (response.equals(ServerRequest.REQUEST_ERROR))
-            Toast.makeText(SharedData.mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
         else if (response.equals("permission problem"))
-            Toast.makeText(SharedData.mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
         else
         {
             SettingData.secondsAmountToGetNotification = Integer.parseInt(response);
-            Toast.makeText(SharedData.mainActivity, "קבלת התראות עודכנה", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "קבלת התראות עודכנה", Toast.LENGTH_SHORT).show();
             SharedData.notificationsFragment.fillInfoFromServerToPickers();
         }
         SettingData.setSecondsAmountToSendNotificationInRequest = false;
@@ -149,9 +151,9 @@ public class Setting
     static public void getInAppMsgContentAns(String response)
     {
         if (response.equals(ServerRequest.REQUEST_ERROR))
-            Toast.makeText(SharedData.mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
         else if (response.equals("permission problem"))
-            Toast.makeText(SharedData.mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
         else
             SharedData.sendMsgFragment.showInAppMsgWindow(response);
         SharedData.sendMsgFragment.MakeLoadingViewGone();
@@ -161,34 +163,34 @@ public class Setting
     {
         SettingData.setInAppMsgInRequest = false;
         if (response.equals(ServerRequest.REQUEST_ERROR))
-            Toast.makeText(SharedData.mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
         else if (response.equals("permission problem"))
-            Toast.makeText(SharedData.mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
         else
         {
-            Toast.makeText(SharedData.mainActivity, "ההודעה עודכנה", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "ההודעה עודכנה", Toast.LENGTH_SHORT).show();
             SharedData.sendMsgFragment.showInAppMsgWindow(response);
         }
         SharedData.sendMsgFragment.MakeLoadingViewGone();
     }
 
 
-    public static void deleteQueueAns(String response) //if success response is userId<newQueue
+    public static void deleteQueueAns(String response)
     {
         SettingData.showUserFragmentInRequest = false;
         if (response.equals("V"))
         {
-            Toast.makeText(SharedData.mainActivity, "התור נמחק", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "התור נמחק", Toast.LENGTH_SHORT).show();
             QueuesData.askForReservedQueues=true;
             if (SharedData.isSettingCrntWindows() &&
-                    (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+                    (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.USER || SettingData.menuBtnClicked == SettingData.MenuBtnClicked.GET_USERS))
             {
                 SharedData.settingFragment.askForUsersList();
                 SharedData.settingFragment.showGetUsersIsClicked();
             }
             else
             {
-                SettingData.btnClicked = null;
+                SettingData.menuBtnClicked = null;
                 SettingData.askForUsersList = true;
             }
         }
@@ -197,23 +199,23 @@ public class Setting
         SharedData.userOptionsFragment.doWhenGetResponseFromTheServer();
     }
 
-    public static void cleanQueueAns(String response) //if success response is userId<newQueue
+    public static void cleanQueueAns(String response)
     {
         SettingData.showUserFragmentInRequest = false;
         if (response.equals("V"))
         {
-            Toast.makeText(SharedData.mainActivity, "התור בוטל והועבר לרשימת התורים הריקים", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "התור בוטל והועבר לרשימת התורים הריקים", Toast.LENGTH_SHORT).show();
             QueuesData.askForReservedQueues=true;
             QueuesData.askForEmptyQueues=true;
             if (SharedData.isSettingCrntWindows() &&
-                    (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+                    (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.USER || SettingData.menuBtnClicked == SettingData.MenuBtnClicked.GET_USERS))
             {
                 SharedData.settingFragment.askForUsersList();
                 SharedData.settingFragment.showGetUsersIsClicked();
             }
             else
             {
-                SettingData.btnClicked = null;
+                SettingData.menuBtnClicked = null;
                 SettingData.askForUsersList = true;
             }
         }
@@ -229,50 +231,52 @@ public class Setting
         if (response.equals("V"))
         {
             String msg= "התור נוסף";
-            Toast.makeText(SharedData.mainActivity, msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, msg, Toast.LENGTH_SHORT).show();
             QueuesData.askForEmptyQueues = true;
             QueuesData.askForReservedQueues = true;
             if (SharedData.isSettingCrntWindows() &&
-                    (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+                    (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.USER || SettingData.menuBtnClicked == SettingData.MenuBtnClicked.GET_USERS))
             {
                 SharedData.settingFragment.askForUsersList();
                 SharedData.settingFragment.showGetUsersIsClicked();
             }
             else
             {
-                SettingData.btnClicked = null;
+                SettingData.menuBtnClicked = null;
                 SettingData.askForUsersList = true;
             }
             return;
         }
         else if (response.equals("queue exist"))
-            Toast.makeText(SharedData.mainActivity, "קביעת התור נכשלה - התור תפוס על ידי מישהו אחר", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "קביעת התור נכשלה - התור תפוס על ידי מישהו אחר", Toast.LENGTH_SHORT).show();
         else
             ServerRequest.requestAnsHelper(response); //make toast
         SharedData.userOptionsFragment.doWhenGetResponseFromTheServer();
     }
 
-    public static void changeQueueAns(String response) //if success response is userId
+    public static void changeQueueAns(String response)
     {
         SettingData.showUserFragmentInRequest = false;
         if(response.equals("V"))
         {
             String msg= "התור שונה";
-            Toast.makeText(SharedData.mainActivity, msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, msg, Toast.LENGTH_SHORT).show();
             QueuesData.askForReservedQueues=true;
             QueuesData.askForEmptyQueues = true;
             if (SharedData.isSettingCrntWindows() &&
-                    (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+                    (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.USER || SettingData.menuBtnClicked == SettingData.MenuBtnClicked.GET_USERS))
             {
                 SharedData.settingFragment.askForUsersList();
                 SharedData.settingFragment.showGetUsersIsClicked();
             }
             else
             {
-                SettingData.btnClicked = null;
+                SettingData.menuBtnClicked = null;
                 SettingData.askForUsersList = true;
             }
         }
+        else if (response.equals("queue exist"))
+            Toast.makeText(mainActivity, "תור קיים", Toast.LENGTH_SHORT).show();
         else
             ServerRequest.requestAnsHelper(response); //make toast
         SharedData.userOptionsFragment.doWhenGetResponseFromTheServer();
@@ -283,16 +287,16 @@ public class Setting
         SettingData.showUserFragmentInRequest = false;
         if(response.equals("V"))
         {
-            Toast.makeText(SharedData.mainActivity,"חסימת המשתמש הוסרה", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity,"חסימת המשתמש הוסרה", Toast.LENGTH_SHORT).show();
             if (SharedData.isSettingCrntWindows() &&
-                    (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+                    (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.USER || SettingData.menuBtnClicked == SettingData.MenuBtnClicked.GET_USERS))
             {
                 SharedData.settingFragment.askForUsersList();
                 SharedData.settingFragment.showGetUsersIsClicked();
             }
             else
             {
-                SettingData.btnClicked = null;
+                SettingData.menuBtnClicked = null;
                 SettingData.askForUsersList = true;
             }
         }
@@ -306,18 +310,18 @@ public class Setting
         SettingData.showUserFragmentInRequest = false;
         if(response.equals("V"))
         {
-            Toast.makeText(SharedData.mainActivity,"המשתמש נחסם", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity,"המשתמש נחסם", Toast.LENGTH_SHORT).show();
             if (haveQueue)
                 QueuesData.askForReservedQueues=true;
             if (SharedData.isSettingCrntWindows() &&
-                    (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+                    (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.USER || SettingData.menuBtnClicked == SettingData.MenuBtnClicked.GET_USERS))
             {
                 SharedData.settingFragment.askForUsersList();
                 SharedData.settingFragment.showGetUsersIsClicked();
             }
             else
             {
-                SettingData.btnClicked = null;
+                SettingData.menuBtnClicked = null;
                 SettingData.askForUsersList = true;
             }
         }
@@ -331,18 +335,18 @@ public class Setting
         SettingData.showUserFragmentInRequest = false;
         if (response.equals("V"))
         {
-            Toast.makeText(SharedData.mainActivity,"המשתמש נמחק", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity,"המשתמש נמחק", Toast.LENGTH_SHORT).show();
             if (haveQueue)
                 QueuesData.askForReservedQueues=true;
             if (SharedData.isSettingCrntWindows() &&
-                    (SettingData.btnClicked == SettingData.BtnClicked.USER || SettingData.btnClicked == SettingData.BtnClicked.GET_USERS))
+                    (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.USER || SettingData.menuBtnClicked == SettingData.MenuBtnClicked.GET_USERS))
             {
                 SharedData.settingFragment.askForUsersList();
                 SharedData.settingFragment.showGetUsersIsClicked();
             }
             else
             {
-                SettingData.btnClicked = null;
+                SettingData.menuBtnClicked = null;
                 SettingData.askForUsersList = true;
             }
         }
@@ -405,7 +409,7 @@ public class Setting
             }
             else
             {
-                SettingData.btnClicked = null;
+                SettingData.menuBtnClicked = null;
                 SharedData.settingFragment.showNoneBtnIsClicked();
             }
         }
@@ -417,12 +421,12 @@ public class Setting
     {
         if (response.equals("permission problem"))
         {
-            Toast.makeText(SharedData.mainActivity, "פעולה לא בוצעה - בעיית הרשאות", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "פעולה לא בוצעה - בעיית הרשאות", Toast.LENGTH_SHORT).show();
             return  false;
         }
         else if (response.equals(ServerRequest.REQUEST_ERROR))
         {
-            Toast.makeText(SharedData.mainActivity, "פעולה לא בוצעה - אין גישה לשרת", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "פעולה לא בוצעה - אין גישה לשרת", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -434,7 +438,7 @@ public class Setting
         {
             SettingData.userCmdIsLock = true;
             SharedData.settingFragment.setBlockSystemSwitch(true);
-            Toast.makeText(SharedData.mainActivity, "המערכת ננעלה לקביעת / שינוי תורים", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "המערכת ננעלה לקביעת / שינוי תורים", Toast.LENGTH_SHORT).show();
         }
         else if (responseErrorHandle(response) == false)
             SharedData.settingFragment.setBlockSystemSwitch(false);
@@ -449,7 +453,7 @@ public class Setting
         {
             SettingData.userCmdIsLock = false;
             SharedData.settingFragment.setBlockSystemSwitch(false);
-            Toast.makeText(SharedData.mainActivity, "המערכת פעילה", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "המערכת פעילה", Toast.LENGTH_SHORT).show();
         }
         else if (responseErrorHandle(response) == false)
             SharedData.settingFragment.setBlockSystemSwitch(true);

@@ -1,7 +1,5 @@
 package com.example.babershopmanager.fragments;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import androidx.annotation.NonNull;
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import com.example.babershopmanager.R;
 import com.example.babershopmanager.fragments.dialogFragments.SimpleMethod;
 import com.example.babershopmanager.fragments.SettingFragments.NotificationsFragment;
@@ -60,10 +58,7 @@ public class SettingFragment extends Fragment
     {
         if (SharedData.notificationsFragment == null)
             SharedData.notificationsFragment = new NotificationsFragment();
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.settingFragment, SharedData.notificationsFragment);
-        fragmentTransaction.commit(); // save the changes
+        getChildFragmentManager().beginTransaction().replace(R.id.settingFragment,SharedData.notificationsFragment).commit();
         fragmentLayout.post( ()-> fragmentLayout.setVisibility(View.VISIBLE) ); //for delay if the response come from the server too much fest
         divider.setVisibility(View.VISIBLE);
     }
@@ -72,10 +67,7 @@ public class SettingFragment extends Fragment
     {
         if (SharedData.userOptionsFragment == null)
             SharedData.userOptionsFragment = new UserOptionsFragment();
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.settingFragment, SharedData.userOptionsFragment);
-        fragmentTransaction.commit(); // save the changes
+        getChildFragmentManager().beginTransaction().replace(R.id.settingFragment,SharedData.userOptionsFragment).commit();
         divider.setVisibility(View.VISIBLE);
         fragmentLayout.setVisibility(View.VISIBLE);
     }
@@ -84,23 +76,17 @@ public class SettingFragment extends Fragment
     {
         if (SharedData.sendMsgFragment == null)
             SharedData.sendMsgFragment = new SendMsgFragment();
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.settingFragment, SharedData.sendMsgFragment);
-        fragmentTransaction.commit(); // save the changes
+        getChildFragmentManager().beginTransaction().replace(R.id.settingFragment,SharedData.sendMsgFragment).commit();
         divider.setVisibility(View.VISIBLE);
         fragmentLayout.setVisibility(View.VISIBLE);
     }
 
     public void showUsersFragment() //called from getUsersListAns
     {
-        SettingData.btnClicked  = SettingData.BtnClicked.GET_USERS; //if i show this fragment without press of button
+        SettingData.menuBtnClicked = SettingData.MenuBtnClicked.GET_USERS; //if i show this fragment without press of button
         if (SharedData.showUsersFragment == null)
             SharedData.showUsersFragment = new ShowUsersFragment();
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.settingFragment, SharedData.showUsersFragment);
-        fragmentTransaction.commit(); // save the changes
+        getChildFragmentManager().beginTransaction().replace(R.id.settingFragment,SharedData.showUsersFragment).commit();
         divider.setVisibility(View.VISIBLE);
         fragmentLayout.setVisibility(View.VISIBLE);
     }
@@ -177,7 +163,7 @@ public class SettingFragment extends Fragment
 
     private void manageFragments()
     {
-        if (SettingData.btnClicked == SettingData.BtnClicked.GET_USERS)
+        if (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.GET_USERS)
         {
             showGetUsersIsClicked();
             if (SettingData.askForUsersList || SettingData.usersWithoutQueue == null)
@@ -185,17 +171,17 @@ public class SettingFragment extends Fragment
             else
                 showUsersFragment();
         }
-        else if (SettingData.btnClicked == SettingData.BtnClicked.USER)
+        else if (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.USER)
         {
             showUserIsClicked();
             showUserOptionFragment();
         }
-        else if (SettingData.btnClicked == SettingData.BtnClicked.SEND_MSG)
+        else if (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.SEND_MSG)
         {
             showSendMsgIsClicked();
             showSendMsgFragment();
         }
-        else if (SettingData.btnClicked == SettingData.BtnClicked.NOTIFICATIONS_SETTING)
+        else if (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.NOTIFICATIONS_SETTING)
         {
             showNotificationSettingIsClicked();
             askForNotificationSetting();
@@ -206,7 +192,7 @@ public class SettingFragment extends Fragment
 
     public void userClicked() //called from ShowUserFragment
     {
-        SettingData.btnClicked = SettingData.BtnClicked.USER;
+        SettingData.menuBtnClicked = SettingData.MenuBtnClicked.USER;
         showNoneBtnIsClicked();
         showUserOptionFragment();
     }
@@ -215,14 +201,14 @@ public class SettingFragment extends Fragment
 
     private void sendMsgBtn(View view)
     {
-        if (SettingData.btnClicked == SettingData.BtnClicked.SEND_MSG)
+        if (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.SEND_MSG)
         {
-            SettingData.btnClicked = null;
+            SettingData.menuBtnClicked = null;
             showNoneBtnIsClicked();
         }
         else
         {
-            SettingData.btnClicked = SettingData.BtnClicked.SEND_MSG;
+            SettingData.menuBtnClicked = SettingData.MenuBtnClicked.SEND_MSG;
             showSendMsgIsClicked();
             showSendMsgFragment();
         }
@@ -230,14 +216,14 @@ public class SettingFragment extends Fragment
 
     public void notificationSettingBtn(View view)
     {
-        if (SettingData.btnClicked == SettingData.BtnClicked.NOTIFICATIONS_SETTING)
+        if (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.NOTIFICATIONS_SETTING)
         {
-            SettingData.btnClicked = null;
+            SettingData.menuBtnClicked = null;
             showNoneBtnIsClicked();
         }
         else
         {
-            SettingData.btnClicked = SettingData.BtnClicked.NOTIFICATIONS_SETTING;
+            SettingData.menuBtnClicked = SettingData.MenuBtnClicked.NOTIFICATIONS_SETTING;
             showNotificationSettingIsClicked();
             askForNotificationSetting();
         }
@@ -245,14 +231,14 @@ public class SettingFragment extends Fragment
 
     private void getUsersBtn(View view)
     {
-        if (SettingData.btnClicked == SettingData.BtnClicked.GET_USERS)
+        if (SettingData.menuBtnClicked == SettingData.MenuBtnClicked.GET_USERS)
         {
-            SettingData.btnClicked = null;
+            SettingData.menuBtnClicked = null;
             showNoneBtnIsClicked();
         }
         else
         {
-            SettingData.btnClicked = SettingData.BtnClicked.GET_USERS;
+            SettingData.menuBtnClicked = SettingData.MenuBtnClicked.GET_USERS;
             showGetUsersIsClicked();
             if (SettingData.askForUsersList || SettingData.usersWithoutQueue == null)
                 askForUsersList();

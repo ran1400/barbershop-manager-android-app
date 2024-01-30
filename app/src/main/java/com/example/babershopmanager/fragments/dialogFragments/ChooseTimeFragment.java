@@ -5,7 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.app.DialogFragment;
+import androidx.fragment.app.DialogFragment;
 import android.widget.TimePicker;
 
 

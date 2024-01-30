@@ -2,7 +2,9 @@ package com.example.babershopmanager.fragments.SettingFragments;
 
 import android.os.Bundle;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +27,9 @@ public class ShowUsersFragment extends Fragment
 
     public static int scrollViewLocation = 0; //remember the location for come back to this fragment
     public static boolean initScrollVewLocation = false;
-
-    private Button getUsersFileBtn,goDownBtn,refreshBtn;
+    private Button goDownBtn;
     private View blockedUserLocation; //on press go down scroll to blockedUserLocation
     private View withoutQueueUsersLocation; //on press go down scroll to withoutQueueUsersLocation
-    private boolean haveUserWithQueues;
     private LinearLayout usersListLayout;
     private ScrollView scrollView;
 
@@ -38,13 +38,13 @@ public class ShowUsersFragment extends Fragment
     {
         View view = inflater.inflate(R.layout.fragment_show_users, container, false);
         SharedData.showUsersFragment = this;
-        getUsersFileBtn = view.findViewById(R.id.getUsersFileBtn);
+        Button getUsersFileBtn = view.findViewById(R.id.getUsersFileBtn);
         getUsersFileBtn.setOnClickListener(this::getUsersFileBtn);
         usersListLayout = view.findViewById(R.id.usersListLayout);
         scrollView = view.findViewById(R.id.usersListScrollView);
         goDownBtn = view.findViewById(R.id.showUsersGoDownBtn);
         goDownBtn.setOnClickListener(this::goDownBtn);
-        refreshBtn = view.findViewById(R.id.showUsersRefreshBtn);
+        Button refreshBtn = view.findViewById(R.id.showUsersRefreshBtn);
         refreshBtn.setOnClickListener(this::refreshBtn);
         createUsersList();
         showGoDownBtn();
@@ -66,12 +66,18 @@ public class ShowUsersFragment extends Fragment
     private void showGoDownBtn()
     {
         int count = 0;
-        if (haveUserWithQueues)
+        if (SettingData.usersWithQueue.length > 0)
             count++;
+        if (SettingData.usersWithQueue.length > 0)
+            Log.d("countCheck","haveUserWithQueues");
         if (withoutQueueUsersLocation != null)
             count++;
+        if (withoutQueueUsersLocation != null)
+            Log.d("countCheck","haveUserWithoutQueues");
         if (blockedUserLocation != null)
             count++;
+        if (blockedUserLocation != null)
+            Log.d("countCheck","haveBlockedUsers");
         if (count < 2)
             goDownBtn.setVisibility(View.GONE);
 
@@ -88,7 +94,6 @@ public class ShowUsersFragment extends Fragment
         User tmpUser;
         if (SettingData.usersWithQueue.length > 0 )
         {
-            haveUserWithQueues = true;
             addTextToLayout( "\nמשתמשים עם תור :\n");
             for (int i = 0; i < SettingData.usersWithQueue.length; i++)
             {
@@ -140,13 +145,13 @@ public class ShowUsersFragment extends Fragment
     private void refreshBtn(View view)
     {
         SettingData.askForUsersList = true;
-        SettingData.btnClicked = null;
+        SettingData.menuBtnClicked = null;
         SharedData.settingFragment.refreshUsersList();
     }
 
     private void goDownBtn(View view)
     {
-        if (haveUserWithQueues == false)
+        if (SettingData.usersWithQueue.length == 0)
         {
             if (blockedUserLocation != null)
                 scrollView.scrollTo(0, blockedUserLocation.getTop());

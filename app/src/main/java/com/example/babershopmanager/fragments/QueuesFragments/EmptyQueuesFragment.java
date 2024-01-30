@@ -2,7 +2,7 @@ package com.example.babershopmanager.fragments.QueuesFragments;
 
 import android.os.Bundle;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;

@@ -18,8 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.babershopmanager.fragments.AddQueuesFragment;
 import com.example.babershopmanager.fragments.DeleteQueuesFragment;
@@ -112,10 +111,7 @@ public class MainActivity extends AppCompatActivity
             SharedData.queuesFragment = new QueuesFragment();
         else if (SharedData.isQueuesCrntWindows())
             SharedData.queuesFragment.setReservedQueuesRadioBtnChecked();
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.mainActivityFragment, SharedData.queuesFragment);
-        fragmentTransaction.commit(); // save the changes
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityFragment,SharedData.queuesFragment).commit();
         SharedData.setQueuesCrntWindow();
     }
 
@@ -125,10 +121,7 @@ public class MainActivity extends AppCompatActivity
             SharedData.addQueuesFragment = new AddQueuesFragment();
         else if (SharedData.isAddQueuesCrntWindows() && AddQueuesData.addQueueWindowsIsVisible())
             SharedData.addQueuesFragment.switchToAddQueuesWindow();
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.mainActivityFragment, SharedData.addQueuesFragment);
-        fragmentTransaction.commit(); // save the changes
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityFragment,SharedData.addQueuesFragment).commit();
         SharedData.setAddQueuesCrntWindow();
         changeActivityTitle("הוספת תורים");
     }
@@ -139,10 +132,7 @@ public class MainActivity extends AppCompatActivity
             SharedData.deleteQueuesFragment = new DeleteQueuesFragment();
         else if ( SharedData.isDeleteQueuesCrntWindows() && DeleteQueuesData.deleteQueueWindowsIsVisible())
                 SharedData.deleteQueuesFragment.switchToDeleteQueuesWindow();
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.mainActivityFragment, SharedData.deleteQueuesFragment);
-        fragmentTransaction.commit(); // save the changes
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityFragment,SharedData.deleteQueuesFragment).commit();
         SharedData.setDeleteQueuesCrntWindow();
         changeActivityTitle("מחיקת תורים");
     }
@@ -151,10 +141,7 @@ public class MainActivity extends AppCompatActivity
     {
         if (SharedData.settingFragment == null)
             SharedData.settingFragment = new SettingFragment();
-        FragmentManager fm = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.mainActivityFragment, SharedData.settingFragment);
-        fragmentTransaction.commit(); // save the changes
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityFragment,SharedData.settingFragment).commit();
         SharedData.setSettingQueuesCrntWindow();
         changeActivityTitle("הגדרות");
     }

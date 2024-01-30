@@ -13,9 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
 
 import com.example.babershopmanager.R;
 import com.example.babershopmanager.server.EmptyQueues;
@@ -120,21 +118,16 @@ public class QueuesFragment extends Fragment
         SharedData.mainActivity.changeActivityTitle("תורים קבועים :");
         if (SharedData.reservedQueuesFragment == null)
             SharedData.reservedQueuesFragment = new ReservedQueuesFragment();
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.queuesListFrame, SharedData.reservedQueuesFragment);
-        fragmentTransaction.commit(); // save the changes
+        getChildFragmentManager().beginTransaction().replace(R.id.queuesListFrame,SharedData.reservedQueuesFragment).commit();
     }
+
 
     private void showPastReservedQueues()
     {
         SharedData.mainActivity.changeActivityTitle("תורים קודמים :");
         if (SharedData.pastQueuesFragment == null)
             SharedData.pastQueuesFragment = new PastQueuesFragment();
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.queuesListFrame, SharedData.pastQueuesFragment);
-        fragmentTransaction.commit(); // save the changes
+        getChildFragmentManager().beginTransaction().replace(R.id.queuesListFrame,SharedData.pastQueuesFragment).commit();
     }
 
     private void showEmptyQueues()
@@ -142,10 +135,7 @@ public class QueuesFragment extends Fragment
         SharedData.mainActivity.changeActivityTitle("תורים פנויים :");
         if (SharedData.emptyQueuesFragment == null)
             SharedData.emptyQueuesFragment = new EmptyQueuesFragment();
-        FragmentManager fm = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.queuesListFrame, SharedData.emptyQueuesFragment);
-        fragmentTransaction.commit(); // save the changes
+        getChildFragmentManager().beginTransaction().replace(R.id.queuesListFrame,SharedData.emptyQueuesFragment).commit();
     }
 
 

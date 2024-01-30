@@ -6,8 +6,8 @@ import com.example.babershopmanager.utils.dataStructures.User;
 public class SettingData
 {
 
-    public enum BtnClicked {GET_USERS,USER,NOTIFICATIONS_SETTING,SEND_MSG}
-    public static BtnClicked btnClicked;
+    public enum MenuBtnClicked {GET_USERS,USER,NOTIFICATIONS_SETTING,SEND_MSG}
+    public static MenuBtnClicked menuBtnClicked;
     public static boolean userCmdIsLock;
     public static boolean userCmdIsLockInRequest = false;
     public static boolean getUsersListInRequest = false;

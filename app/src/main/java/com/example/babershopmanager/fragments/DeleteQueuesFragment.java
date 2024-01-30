@@ -2,8 +2,8 @@ package com.example.babershopmanager.fragments;
 
 import android.os.Bundle;
 
-import android.app.DialogFragment;
-import android.app.Fragment;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -197,10 +197,10 @@ public class DeleteQueuesFragment extends Fragment
                 DeleteQueuesData.deleteQueuesFromHour = hour * 100 + min;
             };
             DialogFragment hourPicker = new ChooseTimeFragment(doOnGetAnsHourPicker);
-            hourPicker.show(getFragmentManager(), "");
+            hourPicker.show(getChildFragmentManager(), "");
         };
         ChooseDateFragment datePicker = new ChooseDateFragment(doOnGetAnsDatePicker);
-        datePicker.show(getFragmentManager(), "");
+        datePicker.show(getChildFragmentManager(), "");
     }
 
     private void deleteQueuesToEditTextClicked(View view)
