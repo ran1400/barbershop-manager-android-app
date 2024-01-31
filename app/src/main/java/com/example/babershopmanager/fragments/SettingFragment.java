@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Switch;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.example.babershopmanager.R;
 import com.example.babershopmanager.fragments.dialogFragments.SimpleMethod;
@@ -31,7 +30,7 @@ public class SettingFragment extends Fragment
     private LinearLayout fragmentLayout;
     private View divider;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
