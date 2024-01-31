@@ -2,7 +2,6 @@ package com.example.babershopmanager.server;
 
 import static com.example.babershopmanager.server.ServerRequest.requestAnsHelper;
 
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.babershopmanager.sharedDate.SharedData;
@@ -28,7 +27,6 @@ public class AddQueues
 
     public static void addQueuesAns(String response)
     {
-        Log.d("check31",response);
         SharedData.addQueuesFragment.addQueuesAns();
         if (response.equals("reservedQueueExistInThisDates"))
         {
