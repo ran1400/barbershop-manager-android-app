@@ -13,7 +13,7 @@ and do the actions:
 
 -add empty queue or many queues by giving dates and hours
 
--remove specific empry queue or many queues by giving dates and hours
+-remove specific empty queue or many queues by giving dates and hours
 
 -block or unblock user
 
