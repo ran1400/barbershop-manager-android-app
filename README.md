@@ -1,8 +1,6 @@
 //app screenshots : https://ibb.co/album/XVhKfS
 
-The app stored on the manager phone and give him the ability to look on : reserved queues,empty queues,past reserved queues,users list 
-
-and do the actions:
+The app stored on the manager phone and give him the ability to look on : reserved queues,empty queues,past reserved queues,users list and do the actions:
 
 -cancel reserved queue
 
