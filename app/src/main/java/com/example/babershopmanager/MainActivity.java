@@ -18,8 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import androidx.fragment.app.FragmentManager;
-
 import com.example.babershopmanager.fragments.AddQueuesFragment;
 import com.example.babershopmanager.fragments.DeleteQueuesFragment;
 import com.example.babershopmanager.fragments.QueuesFragment;
@@ -63,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         if (SharedData.getFromMemory("firstEnter"))
             firstEnter();
         ServerRequest serverRequest = new ServerRequest( (String response) -> Main.checkIfUserCmdEnabledAns(response) );
-        serverRequest.enterToTheApp();
+        serverRequest.checkIfUserCmdEnabled();
     }
 
     private void firstEnter()
@@ -194,7 +192,7 @@ public class MainActivity extends AppCompatActivity
         loadingWindowText.setVisibility(View.INVISIBLE);
         loadingView.setVisibility(View.VISIBLE);
         ServerRequest serverRequest = new ServerRequest( (String response) ->Main.checkIfUserCmdEnabledAns(response));
-        serverRequest.enterToTheApp();
+        serverRequest.checkIfUserCmdEnabled();
     }
 
 

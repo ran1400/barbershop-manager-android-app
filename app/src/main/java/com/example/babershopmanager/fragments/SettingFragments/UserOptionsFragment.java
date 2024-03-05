@@ -73,7 +73,7 @@ public class UserOptionsFragment extends Fragment
         }
         else
         {
-            if (user.queue.length() > 0)
+            if (user.queue.length() > 0) //to user have queue
                 queueBtn.setText("שנה תור");
         }
     }
@@ -254,7 +254,6 @@ public class UserOptionsFragment extends Fragment
     private void blockUserBtn()
     {
         String alertTitle = "לחסום את המשתמש?";
-        String alertMsg = "בעקבות החסימה תתבצע מחיקת התורים העתידיים של המשתמש" ;
         SimpleMethod doIfUserPressOk = () ->
         {
             boolean haveQueue = user.queue.length() > 0;
@@ -262,6 +261,11 @@ public class UserOptionsFragment extends Fragment
             ServerRequest serverRequest = new ServerRequest((String response) ->Setting.blockUserAns(response,haveQueue));
             serverRequest.blockUser(user.mail);
         };
+        String alertMsg;
+        if (user.queue.length() > 0)// to user have queue
+            alertMsg = "התור של המשתמש יעבור לרשימת התורים הפנויים" ;
+        else
+            alertMsg = "";
         AlertDialog.showAlertDialog(alertTitle,alertMsg,doIfUserPressOk);
     }
 

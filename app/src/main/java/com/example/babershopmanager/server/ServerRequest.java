@@ -42,9 +42,9 @@ public class ServerRequest
     }
 
 
-    public void enterToTheApp()
+    public void checkIfUserCmdEnabled()
     {
-        url = "https://ran-yehezkel.online/barbershop/commands/manager/enter_to_the_app.php";
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/check_if_user_cmd_enabled.php";
         sendRequest();
     }
 
