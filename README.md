@@ -1,7 +1,6 @@
-the app stored on the manager phone.
+//app screenshots : https://ibb.co/album/XVhKfS
 
-give him the ability to look on : reserved queues,empty queues,past reserved queues,users list
-
+The app stored on the manager phone and give him the ability to look on : reserved queues,empty queues,past reserved queues,users list
 and do the actions:
 
 -cancel reserved queue
@@ -14,7 +13,7 @@ and do the actions:
 
 -add empty queue or many queues by giving dates and hours
 
--remove specific empry queue or many queues by giving dates and hours
+-remove specific empty queue or many queues by giving dates and hours
 
 -block or unblock user
 
