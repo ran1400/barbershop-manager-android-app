@@ -2,6 +2,7 @@ package com.example.babershopmanager.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +78,7 @@ public class SettingFragment extends Fragment
             SharedData.sendMsgFragment = new SendMsgFragment();
         getChildFragmentManager().beginTransaction().replace(R.id.settingFragment,SharedData.sendMsgFragment).commit();
         divider.setVisibility(View.VISIBLE);
-        fragmentLayout.setVisibility(View.VISIBLE);
+        makeFragmentLayoutVisibleInDaley();
     }
 
     public void showUsersFragment() //called from getUsersListAns
@@ -87,7 +88,12 @@ public class SettingFragment extends Fragment
             SharedData.showUsersFragment = new ShowUsersFragment();
         getChildFragmentManager().beginTransaction().replace(R.id.settingFragment,SharedData.showUsersFragment).commit();
         divider.setVisibility(View.VISIBLE);
-        fragmentLayout.setVisibility(View.VISIBLE);
+        makeFragmentLayoutVisibleInDaley();
+    }
+
+    private void makeFragmentLayoutVisibleInDaley() //let the fragment time to load
+    {
+        new Handler().postDelayed(()-> fragmentLayout.setVisibility(View.VISIBLE), 50);
     }
 
     public void refreshUsersList() //called from ShowUserFragment
@@ -186,7 +192,10 @@ public class SettingFragment extends Fragment
             askForNotificationSetting();
         }
         else
+        {
             showNoneBtnIsClicked();
+        }
+
     }
 
     public void userClicked() //called from ShowUserFragment
@@ -195,8 +204,6 @@ public class SettingFragment extends Fragment
         showNoneBtnIsClicked();
         showUserOptionFragment();
     }
-
-
 
     private void sendMsgBtn(View view)
     {
