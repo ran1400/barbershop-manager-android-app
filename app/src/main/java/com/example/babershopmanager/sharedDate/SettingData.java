@@ -18,6 +18,8 @@ public class SettingData
     public static User[] blockedUsers = null;
     public static boolean sendPushMsgInRequest = false;
     public static boolean setInAppMsgInRequest = false;
+
+    public static boolean sendMailInRequest = false;
     public static int userClickedBtnId;
     public static boolean showUserFragmentInRequest = false;
     public static int secondsAmountToGetNotification; //for notification manager fragment

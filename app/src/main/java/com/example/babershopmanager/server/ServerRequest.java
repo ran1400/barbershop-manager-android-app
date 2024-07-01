@@ -54,6 +54,14 @@ public class ServerRequest
         map.put("msg",msg);
         sendRequest();
     }
+
+    public void sendMailToAllTheUsers(String mailTitle,String mailBody)
+    {
+        url = "https://ran-yehezkel.online/barbershop/commands/manager/send_email_to_all_users.php";
+        map.put("mailTitle",mailTitle);
+        map.put("mailBody",mailBody);
+        sendRequest();
+    }
     public void neverSendQueueUpdates()
     {
         setSecondsAmountToSendNotification(0);

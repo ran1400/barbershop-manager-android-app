@@ -15,6 +15,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.babershopmanager.MainActivity;
 import com.example.babershopmanager.R;
+import com.example.babershopmanager.sharedDate.SettingData;
 import com.example.babershopmanager.sharedDate.SharedData;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -40,14 +41,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     json,
                     new Response.Listener<JSONObject>() {
                         @Override
-                        public void onResponse(JSONObject response) {
-                            SharedData.sendMsgFragment.sendPushMsgNotInRequest();
+                        public void onResponse(JSONObject response)
+                        {
+                            SettingData.sendPushMsgInRequest = false;
+                            SharedData.sendMsgFragment.inAppMsgNotInRequest();
+                            SharedData.sendMsgFragment.sendNotificationMsgNotInRequest();
                             Toast.makeText(SharedData.mainActivity, "ההודעה נשלחה", Toast.LENGTH_SHORT).show();
                         }
                     }, new Response.ErrorListener() {
                 @Override
-                public void onErrorResponse(VolleyError error) {
-                    SharedData.sendMsgFragment.sendPushMsgNotInRequest();
+                public void onErrorResponse(VolleyError error)
+                {
+                    SettingData.sendPushMsgInRequest = false;
+                    SharedData.sendMsgFragment.inAppMsgNotInRequest();
+                    SharedData.sendMsgFragment.sendNotificationMsgNotInRequest();
                     Toast.makeText(SharedData.mainActivity, "השליחה נכשלה", Toast.LENGTH_SHORT).show();
                 }
             }

@@ -2,6 +2,7 @@ package com.example.babershopmanager.server;
 
 import static com.example.babershopmanager.sharedDate.SharedData.mainActivity;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.babershopmanager.sharedDate.QueuesData;
@@ -150,18 +151,20 @@ public class Setting
 
     static public void getInAppMsgContentAns(String response)
     {
+        SettingData.setInAppMsgInRequest = false;
+        SharedData.sendMsgFragment.inAppMsgNotInRequest();
         if (response.equals(ServerRequest.REQUEST_ERROR))
             Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
         else if (response.equals("permission problem"))
             Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
         else
             SharedData.sendMsgFragment.showInAppMsgWindow(response);
-        SharedData.sendMsgFragment.MakeLoadingViewGone();
     }
 
     static public void setInAppMsgAns(String response)
     {
         SettingData.setInAppMsgInRequest = false;
+        SharedData.sendMsgFragment.inAppMsgNotInRequest();
         if (response.equals(ServerRequest.REQUEST_ERROR))
             Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
         else if (response.equals("permission problem"))
@@ -171,9 +174,19 @@ public class Setting
             Toast.makeText(mainActivity, "ההודעה עודכנה", Toast.LENGTH_SHORT).show();
             SharedData.sendMsgFragment.showInAppMsgWindow(response);
         }
-        SharedData.sendMsgFragment.MakeLoadingViewGone();
     }
 
+    static public void sendMailToAllTheUsersAns(String response)
+    {
+        SettingData.sendMailInRequest = false;
+        SharedData.sendMsgFragment.sendMailNotInRequest();
+        if (response.equals(ServerRequest.REQUEST_ERROR))
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+        else if (response.equals("permission problem"))
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+        else //response == 'V'
+            Toast.makeText(mainActivity, "המייל נשלח", Toast.LENGTH_SHORT).show();
+    }
 
     public static void deleteQueueAns(String response)
     {
@@ -204,7 +217,7 @@ public class Setting
         SettingData.showUserFragmentInRequest = false;
         if (response.equals("V"))
         {
-            Toast.makeText(mainActivity, "התור בוטל והועבר לרשימת התורים הריקים", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mainActivity, "התור בוטל והועבר לרשימת התורים הפנויים", Toast.LENGTH_SHORT).show();
             QueuesData.askForReservedQueues=true;
             QueuesData.askForEmptyQueues=true;
             if (SharedData.isSettingCrntWindows() &&
