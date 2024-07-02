@@ -100,8 +100,6 @@ public class SendMsgFragment extends Fragment
     {
         sendMailLoadingView.setVisibility(View.INVISIBLE);
         sendMailBtn.setEnabled(true);
-        mailTitleEditText.setText("");
-        mailBodyEditText.setText("");
     }
 
     public void sendNotificationMsgNotInRequest()
@@ -262,9 +260,5 @@ public class SendMsgFragment extends Fragment
         String body = pushMsgBodyEditText.getText().toString();
         sendNotificationMsgInRequest();
         MyFirebaseMessagingService.sendNotificationToYourself(title,body,quietMsgCheckBox.isChecked());
-        /*Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory(Intent.CATEGORY_HOME);
-        homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(homeIntent);*/
     }
 }
