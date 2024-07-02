@@ -180,12 +180,15 @@ public class Setting
     {
         SettingData.sendMailInRequest = false;
         SharedData.sendMsgFragment.sendMailNotInRequest();
-        if (response.equals(ServerRequest.REQUEST_ERROR))
-            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
-        else if (response.equals("permission problem"))
-            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
-        else //response == 'V'
+        if (response.equals("V"))
             Toast.makeText(mainActivity, "המייל נשלח", Toast.LENGTH_SHORT).show();
+        else if (response.equals(ServerRequest.REQUEST_ERROR))
+            Toast.makeText(mainActivity, "אין חיבור לאינטרנט", Toast.LENGTH_SHORT).show();
+        else if (response.equals("connection failed") || response.equals("cmd failed"))
+            Toast.makeText(mainActivity, "הפעולה נכשלה - נסה שוב", Toast.LENGTH_SHORT).show();
+        else // response.equals("permission problem")
+            Toast.makeText(mainActivity, "בעיית הרשאות", Toast.LENGTH_SHORT).show();
+
     }
 
     public static void deleteQueueAns(String response)
@@ -366,7 +369,6 @@ public class Setting
         else
             ServerRequest.requestAnsHelper(response); //make toast
         SharedData.userOptionsFragment.doWhenGetResponseFromTheServer();
-
     }
 
     private static void getUsersListAnsHelper(String response)

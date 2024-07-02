@@ -343,9 +343,9 @@ public class ServerRequest
             return false;
         if (response.equals("connection failed"))
             return false;
-        else if (response.equals("cmd failed"))
+        if (response.equals("cmd failed"))
             return false;
-        else if (response.equals("permission problem"))
+        if (response.equals("permission problem"))
             return false;
         return true;
     }
