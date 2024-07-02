@@ -3,6 +3,7 @@ package com.example.babershopmanager.fragments.SettingFragments;
 
 import static com.example.babershopmanager.sharedDate.SharedData.mainActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -259,16 +260,11 @@ public class SendMsgFragment extends Fragment
     {
         String title = pushMsgTitleEditTest.getText().toString();
         String body = pushMsgBodyEditText.getText().toString();
-        String channelId;
-        if (quietMsgCheckBox.isChecked())
-            channelId = "testMsgQuiet";
-        else
-            channelId = "testMsg";
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), channelId)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(body);
-        NotificationManagerCompat manager = NotificationManagerCompat.from(getActivity());
-        manager.notify(0, builder.build());
+        sendNotificationMsgInRequest();
+        MyFirebaseMessagingService.sendNotificationToYourself(title,body,quietMsgCheckBox.isChecked());
+        /*Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
+        homeIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(homeIntent);*/
     }
 }

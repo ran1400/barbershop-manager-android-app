@@ -3,6 +3,7 @@ package com.example.babershopmanager.notifications;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 
@@ -23,13 +24,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
-public class MyFirebaseMessagingService extends FirebaseMessagingService {
-    private static final String URL = "https://fcm.googleapis.com/fcm/send";
-
-    public static void sendNotification(String topic, String title, String body, String channelId) {
+public class MyFirebaseMessagingService extends FirebaseMessagingService
+{
+    public static void sendNotificationHelper(String topic, String title, String body, String channelId,String authorizationKey)
+    {
         RequestQueue mRequestQue = Volley.newRequestQueue(SharedData.mainActivity);
         JSONObject json = new JSONObject();
-        try {
+        try
+        {
             json.put("to", "/topics/" + topic);
             JSONObject notificationObj = new JSONObject();
             notificationObj.put("android_channel_id", channelId);
@@ -37,38 +39,45 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificationObj.put("body", body);
             json.put("notification", notificationObj);
 
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL,
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, "https://fcm.googleapis.com/fcm/send",
                     json,
-                    new Response.Listener<JSONObject>() {
+                    new Response.Listener<JSONObject>()
+                    {
                         @Override
                         public void onResponse(JSONObject response)
                         {
                             SettingData.sendPushMsgInRequest = false;
-                            SharedData.sendMsgFragment.inAppMsgNotInRequest();
                             SharedData.sendMsgFragment.sendNotificationMsgNotInRequest();
                             Toast.makeText(SharedData.mainActivity, "ההודעה נשלחה", Toast.LENGTH_SHORT).show();
                         }
-                    }, new Response.ErrorListener() {
+                    }, new Response.ErrorListener()
+            {
                 @Override
                 public void onErrorResponse(VolleyError error)
                 {
                     SettingData.sendPushMsgInRequest = false;
-                    SharedData.sendMsgFragment.inAppMsgNotInRequest();
                     SharedData.sendMsgFragment.sendNotificationMsgNotInRequest();
                     Toast.makeText(SharedData.mainActivity, "השליחה נכשלה", Toast.LENGTH_SHORT).show();
                 }
             }
-            ) {
+            )
+            {
                 @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
+                public Map<String, String> getHeaders()
+                {
                     Map<String, String> header = new HashMap<>();
                     header.put("content-type", "application/json");
-                    header.put("authorization", SharedData.mainActivity.getString(R.string.notificationAuthorizationKey));
+                    header.put("authorization",authorizationKey);
                     return header;
                 }
             };
             mRequestQue.add(request);
-        } catch (JSONException e) {
+        }
+        catch (JSONException e)
+        {
+            SettingData.sendPushMsgInRequest = false;
+            SharedData.sendMsgFragment.sendNotificationMsgNotInRequest();
+            Toast.makeText(SharedData.mainActivity, "השליחה נכשלה", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -78,11 +87,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             channelId = "quietManagerMsg";
         else
             channelId = "managerMsg";
-        sendNotification("managerMsgs", title, body, channelId);
+        String authorizationKey = SharedData.mainActivity.getString(R.string.userNotificationAuthorizationKey);
+        sendNotificationHelper("managerMsgs", title, body, channelId,authorizationKey);
+    }
+
+    public static void sendNotificationToYourself(String title, String body, boolean quietMsg)
+    {
+        String channelId;
+        if (quietMsg)
+            channelId = "testMsgQuiet";
+        else
+            channelId = "testMsg";
+        String authorizationKey = SharedData.mainActivity.getString(R.string.managerNotificationAuthorizationKey);
+        sendNotificationHelper("managerTests", title, body, channelId,authorizationKey);
     }
 
     @Override
-    public void onMessageReceived(RemoteMessage remoteMessage) {
+    public void onMessageReceived(RemoteMessage remoteMessage)
+    {
         super.onMessageReceived(remoteMessage);
         String channelId = remoteMessage.getNotification().getChannelId();
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

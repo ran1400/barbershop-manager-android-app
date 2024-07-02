@@ -11,7 +11,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 
 import androidx.fragment.app.Fragment;
 
@@ -34,8 +33,7 @@ public class QueuesFragment extends Fragment
     private TextView noInternetText;
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_queues, container, false);
         SharedData.queuesFragment = this;

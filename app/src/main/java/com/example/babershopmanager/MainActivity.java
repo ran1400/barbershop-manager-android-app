@@ -4,7 +4,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 
 
-import android.os.Build;
 import android.os.Bundle;
 
 
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -75,20 +73,17 @@ public class MainActivity extends AppCompatActivity
     private void createNotificationChannels()
     {
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            NotificationChannel channel;
-            channel = new NotificationChannel("userAddQueue", "קביעת תורים", NotificationManager.IMPORTANCE_DEFAULT);
-            manager.createNotificationChannel(channel);
-            channel = new NotificationChannel("userDeleteQueue", "ביטול תורים", NotificationManager.IMPORTANCE_DEFAULT);
-            manager.createNotificationChannel(channel);
-            channel = new NotificationChannel("userUpdateQueue", "עדכון תורים", NotificationManager.IMPORTANCE_DEFAULT);
-            manager.createNotificationChannel(channel);
-            channel = new NotificationChannel("testMsg", "הודעת ניסיון", NotificationManager.IMPORTANCE_DEFAULT);
-            manager.createNotificationChannel(channel);
-            channel = new NotificationChannel("testMsgQuiet", "הודעת ניסיון שקטה", NotificationManager.IMPORTANCE_LOW);
-            manager.createNotificationChannel(channel);
-        }
+        NotificationChannel channel;
+        channel = new NotificationChannel("userAddQueue", "קביעת תורים", NotificationManager.IMPORTANCE_DEFAULT);
+        manager.createNotificationChannel(channel);
+        channel = new NotificationChannel("userDeleteQueue", "ביטול תורים", NotificationManager.IMPORTANCE_DEFAULT);
+        manager.createNotificationChannel(channel);
+        channel = new NotificationChannel("userUpdateQueue", "עדכון תורים", NotificationManager.IMPORTANCE_DEFAULT);
+        manager.createNotificationChannel(channel);
+        channel = new NotificationChannel("testMsg", "הודעת ניסיון", NotificationManager.IMPORTANCE_DEFAULT);
+        manager.createNotificationChannel(channel);
+        channel = new NotificationChannel("testMsgQuiet", "הודעת ניסיון שקטה", NotificationManager.IMPORTANCE_LOW);
+        manager.createNotificationChannel(channel);
     }
 
     public void changeActivityTitle(String title)
@@ -149,7 +144,7 @@ public class MainActivity extends AppCompatActivity
         return new NavigationBarView.OnItemSelectedListener()
         {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)
+            public boolean onNavigationItemSelected(MenuItem item)
             {
                 item.setChecked(true);
                 switch(item.getItemId())
