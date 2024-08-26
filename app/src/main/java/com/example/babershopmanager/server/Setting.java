@@ -5,9 +5,9 @@ import static com.example.babershopmanager.sharedDate.SharedData.mainActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.babershopmanager.fragments.SettingFragments.ShowUsersFragment;
 import com.example.babershopmanager.sharedDate.QueuesData;
 import com.example.babershopmanager.utils.dataStructures.User;
-import com.example.babershopmanager.fragments.SettingFragments.ShowUsersFragment;
 import com.example.babershopmanager.sharedDate.SharedData;
 import com.example.babershopmanager.sharedDate.SettingData;
 
@@ -412,8 +412,9 @@ public class Setting
         {
             getUsersListAnsHelper(response);
             SettingData.askForUsersList = false;
-            ShowUsersFragment.initScrollViewLocation();
-            SharedData.settingFragment.showUsersFragment();
+            ShowUsersFragment.initScrollViewLocation(); //static method in fragments.settingFragments.ShowUsersFragments
+            if (SharedData.isSettingCrntWindows())
+                SharedData.settingFragment.showUsersFragment();
         }
         else //get users list from the server failed
         {
