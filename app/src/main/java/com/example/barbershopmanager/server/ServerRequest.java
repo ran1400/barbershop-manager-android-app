@@ -76,7 +76,7 @@ public class ServerRequest
     {
         url += "manager/send_email_to_all_users.php";
         map.put("mailTitle",mailTitle);
-        map.put("mailBody",mailBody);
+        map.put("mailBody",mailBody.replace("\n","<br>"));
         sendRequest();
     }
     public void neverSendQueueUpdates()

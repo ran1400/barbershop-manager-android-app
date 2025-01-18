@@ -1,10 +1,10 @@
 package com.example.barbershopmanager.fragments;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
-
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import android.os.Bundle;
+
 
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -233,7 +233,7 @@ public class AddQueuesFragment extends Fragment
             SharedData.addQueuesFragment.addQueuesHourStartEditText.setText(showHourStr);
             AddQueuesData.addQueuesHourStart = hour * 100 + min;
         };
-        DialogFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
+        ChooseTimeFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
         hourPicker.show(getChildFragmentManager(), "");
     }
 
@@ -269,7 +269,7 @@ public class AddQueuesFragment extends Fragment
             SharedData.addQueuesFragment.addQueueHourEditText.setText(showHourStr);
             AddQueuesData.addQueueHour = hour * 100 + min;
         };
-        DialogFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
+        ChooseTimeFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
         hourPicker.show(getChildFragmentManager(), "");
     }
 
