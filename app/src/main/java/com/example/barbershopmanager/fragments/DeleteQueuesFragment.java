@@ -235,7 +235,7 @@ public class DeleteQueuesFragment extends Fragment
             DeleteQueuesData.deleteQueueDate = date;
         };
         ChooseDateFragment datePicker = new ChooseDateFragment(doOnGetAns);
-        datePicker.show(getFragmentManager(), "");
+        datePicker.show(getParentFragmentManager(), "");
     }
 
     private void deleteQueueHourEditTextClicked(View view)
