@@ -196,11 +196,11 @@ public class DeleteQueuesFragment extends Fragment
                 SharedData.deleteQueuesFragment.deleteQueuesFromEditText.setText(text);
                 DeleteQueuesData.deleteQueuesFromHour = hour * 100 + min;
             };
-            DialogFragment hourPicker = new ChooseTimeFragment(doOnGetAnsHourPicker);
-            hourPicker.show(getChildFragmentManager(), "");
+            ChooseTimeFragment hourPicker = new ChooseTimeFragment(doOnGetAnsHourPicker);
+            hourPicker.show(this);
         };
         ChooseDateFragment datePicker = new ChooseDateFragment(doOnGetAnsDatePicker);
-        datePicker.show(getChildFragmentManager(), "");
+        datePicker.show(this);
     }
 
     private void deleteQueuesToEditTextClicked(View view)
@@ -219,11 +219,11 @@ public class DeleteQueuesFragment extends Fragment
                 SharedData.deleteQueuesFragment.deleteQueuesToEditText.setText(txt);
                 DeleteQueuesData.deleteQueuesToHour = hour * 100 + min;
             };
-            DialogFragment hourPicker = new ChooseTimeFragment(doOnGetAnsHourPicker);
-            hourPicker.show(getFragmentManager(), "");
+            ChooseTimeFragment hourPicker = new ChooseTimeFragment(doOnGetAnsHourPicker);
+            hourPicker.show(this);
         };
         ChooseDateFragment datePicker = new ChooseDateFragment(doOnGetAnsDatePicker);
-        datePicker.show(getFragmentManager(), "");
+        datePicker.show(this);
     }
 
     private void deleteQueueDateEditTextClicked(View view)
@@ -235,7 +235,7 @@ public class DeleteQueuesFragment extends Fragment
             DeleteQueuesData.deleteQueueDate = date;
         };
         ChooseDateFragment datePicker = new ChooseDateFragment(doOnGetAns);
-        datePicker.show(getParentFragmentManager(), "");
+        datePicker.show(this);
     }
 
     private void deleteQueueHourEditTextClicked(View view)
@@ -246,8 +246,8 @@ public class DeleteQueuesFragment extends Fragment
             SharedData.deleteQueuesFragment.deleteQueueHourEditText.setText(showHourStr);
             DeleteQueuesData.deleteQueueHour = hour * 100 + min;
         };
-        DialogFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
-        hourPicker.show(getFragmentManager(), "");
+        ChooseTimeFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
+        hourPicker.show(this);
     }
 
     private void deleteQueues(View view)
@@ -289,7 +289,7 @@ public class DeleteQueuesFragment extends Fragment
             doBeforeDeleteQueuesRequest();
             String fromDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesFromDate, DeleteQueuesData.deleteQueuesFromHour);
             String toDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesToDate, DeleteQueuesData.deleteQueuesToHour);
-            ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteReservedQueuesAns(response));
+            ServerRequest serverRequest = new ServerRequest(DeleteQueues::deleteReservedQueuesAns);
             serverRequest.deleteReservedQueues(fromDate, toDate);
         };
         AlertDialog.showAlertDialog(alertTitle,"",doIfUserPressOk);
@@ -303,7 +303,7 @@ public class DeleteQueuesFragment extends Fragment
             doBeforeDeleteQueuesRequest();
             String fromDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesFromDate,DeleteQueuesData.deleteQueuesFromHour);
             String toDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesToDate,DeleteQueuesData.deleteQueuesToHour);
-            ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteEmptyAndReservedQueuesAns(response));
+            ServerRequest serverRequest = new ServerRequest(DeleteQueues::deleteEmptyAndReservedQueuesAns);
             serverRequest.deleteEmptyAndReservedQueues(fromDate, toDate);
         };
         AlertDialog.showAlertDialog(alertTitle,"",doIfUserPressOk);
@@ -317,7 +317,7 @@ public class DeleteQueuesFragment extends Fragment
             doBeforeDeleteQueuesRequest();
             String fromDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesFromDate,DeleteQueuesData.deleteQueuesFromHour);
             String toDate = DateHelper.getTime(DeleteQueuesData.deleteQueuesToDate,DeleteQueuesData.deleteQueuesToHour);
-            ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteEmptyQueuesAns(response));
+            ServerRequest serverRequest = new ServerRequest(DeleteQueues::deleteEmptyQueuesAns);
             serverRequest.deleteEmptyQueues(fromDate, toDate);
         };
         AlertDialog.showAlertDialog(alertTitle,"",doIfUserPressOk);
@@ -357,7 +357,7 @@ public class DeleteQueuesFragment extends Fragment
         {
             doBeforeDeleteQueueRequest();
             String date = DateHelper.getTime(DeleteQueuesData.deleteQueueDate,DeleteQueuesData.deleteQueueHour);
-            ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteReservedQueueAns(response));
+            ServerRequest serverRequest = new ServerRequest(DeleteQueues::deleteReservedQueueAns);
             serverRequest.deleteReservedQueueByTime(date);
         };
         AlertDialog.showAlertDialog(alertTitle,"",doIfUserPressOk);
@@ -370,7 +370,7 @@ public class DeleteQueuesFragment extends Fragment
         {
             doBeforeDeleteQueueRequest();
             String date = DateHelper.getTime(DeleteQueuesData.deleteQueueDate,DeleteQueuesData.deleteQueueHour);
-            ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteEmptyOrReservedQueueAns(response));
+            ServerRequest serverRequest = new ServerRequest(DeleteQueues::deleteEmptyOrReservedQueueAns);
             serverRequest.deleteEmptyOrReservedQueue(date);
         };
         AlertDialog.showAlertDialog(alertTitle,"",doIfUserPressOk);
@@ -383,7 +383,7 @@ public class DeleteQueuesFragment extends Fragment
         {
             doBeforeDeleteQueueRequest();
             String date = DateHelper.getTime(DeleteQueuesData.deleteQueueDate,DeleteQueuesData.deleteQueueHour);
-            ServerRequest serverRequest = new ServerRequest((String response) -> DeleteQueues.deleteEmptyQueueAns(response));
+            ServerRequest serverRequest = new ServerRequest(DeleteQueues::deleteEmptyQueueAns);
             serverRequest.deleteEmptyQueue(date);
         };
         AlertDialog.showAlertDialog(alertTitle,"",doIfUserPressOk);

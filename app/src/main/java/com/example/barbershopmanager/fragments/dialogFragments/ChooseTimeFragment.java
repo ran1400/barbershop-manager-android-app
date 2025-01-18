@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+
 import android.widget.TimePicker;
 
 
@@ -16,6 +18,7 @@ public class ChooseTimeFragment extends DialogFragment implements TimePickerDial
     }
 
     private DoOnGetAns doOnGetAns;
+
 
     public ChooseTimeFragment()
     {
@@ -69,5 +72,10 @@ public class ChooseTimeFragment extends DialogFragment implements TimePickerDial
     public void onTimeSet(TimePicker timePicker, int hour, int min)
     {
         doOnGetAns.doOnGetAns(hour,min);
+    }
+
+    public void show(Fragment fragment)
+    {
+        super.show(fragment.getParentFragmentManager(), "");
     }
 }

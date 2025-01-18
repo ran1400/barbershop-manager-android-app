@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+
 import android.widget.DatePicker;
 import java.io.Serializable;
 import java.util.Calendar;
@@ -49,5 +51,10 @@ public class ChooseDateFragment extends DialogFragment implements DatePickerDial
     public void onDateSet(DatePicker view, int year, int month, int day)
     {
         doOnGetAns.doOnGetAns(year,month,day);
+    }
+
+    public void show(Fragment fragment)
+    {
+        super.show(fragment.getParentFragmentManager(), "");
     }
 }

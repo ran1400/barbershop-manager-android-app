@@ -222,7 +222,7 @@ public class AddQueuesFragment extends Fragment
             AddQueuesData.addQueuesDateStart = date;
         };
         ChooseDateFragment datePicker = new ChooseDateFragment(doOnGetAns);
-        datePicker.show(getChildFragmentManager(), "");
+        datePicker.show(this);
     }
 
     private void addQueuesHourStartEditTextClicked(View view)
@@ -234,7 +234,7 @@ public class AddQueuesFragment extends Fragment
             AddQueuesData.addQueuesHourStart = hour * 100 + min;
         };
         ChooseTimeFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
-        hourPicker.show(getChildFragmentManager(), "");
+        hourPicker.show(this);
     }
 
     private void addQueuesDateEndEditTextClicked(View view)
@@ -246,7 +246,7 @@ public class AddQueuesFragment extends Fragment
             AddQueuesData.addQueuesDateEnd = date;
         };
         ChooseDateFragment datePicker = new ChooseDateFragment(doOnGetAns);
-        datePicker.show(getChildFragmentManager(), "");
+        datePicker.show(this);
     }
 
     private void addQueuesHourEndEditTextClicked(View view)
@@ -257,8 +257,8 @@ public class AddQueuesFragment extends Fragment
             SharedData.addQueuesFragment.addQueuesHourEndEditText.setText(showHourStr);
             AddQueuesData.addQueuesHourEnd =  hour * 100 + min;
         };
-        DialogFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
-        hourPicker.show(getChildFragmentManager(), "");
+        ChooseTimeFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
+        hourPicker.show(this);
     }
 
     private void addQueueHourEditTextClicked(View view)
@@ -270,7 +270,7 @@ public class AddQueuesFragment extends Fragment
             AddQueuesData.addQueueHour = hour * 100 + min;
         };
         ChooseTimeFragment hourPicker = new ChooseTimeFragment(doOnGetAns);
-        hourPicker.show(getChildFragmentManager(), "");
+        hourPicker.show(this);
     }
 
     private void addQueueDateEditTextClicked(View view)
@@ -282,7 +282,7 @@ public class AddQueuesFragment extends Fragment
             AddQueuesData.addQueueDate = date;
         };
         ChooseDateFragment datePicker = new ChooseDateFragment(doOnGetAns);
-        datePicker.show(getChildFragmentManager(), "");
+        datePicker.show(this);
     }
 
 
@@ -324,7 +324,6 @@ public class AddQueuesFragment extends Fragment
         addQueueBtn.setEnabled(false);
         AddQueuesData.addQueueInRequest = true;
     }
-
 
     private boolean checkQueueSpaceEditText()
     {
