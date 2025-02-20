@@ -3,47 +3,28 @@ app screenshots : https://ran-y.me/barbershop-manager-screenshots
 The app stored on the manager phone and give him the ability to look on : reserved queues,empty queues,past reserved queues,users list
 and do the actions:
 
--cancel reserved queue
+-Cancel reserved queue
 
--change reserved queue
+-Change reserved queue
 
--call to queue holder
+-Call to queue holder
 
--add reserved queue by choose user and date
+-Add reserved queue by choose user and date
 
--add empty queue or many queues by giving dates and hours
+-Add empty queue or many queues by giving dates and hours
 
--remove specific empty queue or many queues by giving dates and hours
+-Remove specific empty queue or many queues by giving dates and hours
 
--block or unblock user
+-Block/unblock user
 
--delete user
+-Delete user
 
--call to user
+-Show message in the app
 
--show message in the app to all the users
+-Send push notification to all the users
 
--send push notification to all the users
+-Lock/unlock the option for users to change or get queue
 
--lock the users option to change or get queue
+-Decide which notifications he get about user get cancel or change queue
 
-
-the manager have the option to decide which notifications he get about :
-
--user get queue
-
--user cancel queue
-
--user change queue
-
-
-
-and decide which notifications to send to user about :
-
--block user
-
--unblock user
-
--remove user
-
--change queue (add reserved queue,change queue or cancel queue)
+-Decide if send notification to user if their queue change
