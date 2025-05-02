@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SettingFragments.UserOptionsFragment">
+
+    <ProgressBar
+        android:id="@+id/userOptionFragmentLoadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="SpeakableTextPresentCheck">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/userOptionFragmentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userOptionFragmentPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userOptionFragmentName" />
+
+    <Button
+        android:id="@+id/userOptionFragmentQueueBtn"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="קבע תור"
+        app:layout_constraintTop_toBottomOf="@id/userOptionFragmentPhone"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/userOptionFragmentPhoneCallBtn" />
+
+        <Button
+            android:id="@+id/userOptionFragmentPhoneCallBtn"
+            android:layout_width="130dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:text="התקשר"
+            app:layout_constraintTop_toBottomOf="@id/userOptionFragmentPhone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/userOptionFragmentQueueBtn" />
+
+
+    <Button
+        android:id="@+id/userOptionFragmentRemoveBtn"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="מחק משתמש"
+        app:layout_constraintTop_toBottomOf="@id/userOptionFragmentPhoneCallBtn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/userOptionFragmentBlockBtn" />
+
+    <Button
+        android:id="@+id/userOptionFragmentBlockBtn"
+        android:layout_width="130dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="חסום משתמש"
+        app:layout_constraintTop_toBottomOf="@id/userOptionFragmentPhoneCallBtn"
+        app:layout_constraintLeft_toRightOf="@id/userOptionFragmentRemoveBtn"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

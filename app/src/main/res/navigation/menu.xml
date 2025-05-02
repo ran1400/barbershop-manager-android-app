@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_queues"
+        android:enabled="true"
+        android:icon="@drawable/ic_queues"
+        android:title="תורים"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_add_queues"
+        android:enabled="true"
+        android:icon="@drawable/ic_add_queues"
+        android:title="הוסף תורים"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_delete_queues"
+        android:enabled="true"
+        android:icon="@drawable/ic_delete_queues"
+        android:title="מחק תורים"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/navigation_setting"
+        android:enabled="true"
+        android:icon="@drawable/ic_setting"
+        android:title="הגדרות"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.AddQueuesFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/switchToAddQueueWindow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="להוספת תור אחד"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Button
+            android:id="@+id/switchToAddQueuesWindow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="להוספת מספר תורים"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/addQueueWindow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/switchToAddQueueWindow"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/addQueueLoadingView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.71" />
+
+            <EditText
+                android:id="@+id/addQueueDateEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:editable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/chooseDate"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Deprecated" />
+
+            <EditText
+                android:id="@+id/addQueueHourEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:editable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/chooseHour"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addQueueDateEditText"
+                tools:ignore="Deprecated" />
+
+            <Button
+                android:id="@+id/addQueueBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:text="הוספת תור אחד"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addQueueHourEditText" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+            android:id="@+id/addQueuesWindow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/switchToAddQueueWindow"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:id="@+id/addQueuesLoadingView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.9" />
+
+
+            <TextView
+                android:id="@+id/textViewInDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="15dp"
+                android:text="בימים"
+                android:textSize="20sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <EditText
+                android:id="@+id/addQueuesDateStartEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:editable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/chooseDate"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/textViewHyphenDates"
+                app:layout_constraintRight_toLeftOf="@id/textViewInDays"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewHyphenDates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginRight="10dp"
+                android:text="-"
+                android:textSize="30sp"
+                app:layout_constraintLeft_toRightOf="@+id/addQueuesDateEndEditText"
+                app:layout_constraintRight_toLeftOf="@+id/addQueuesDateStartEditText"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/addQueuesDateEndEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:editable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/chooseDate"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/textViewHyphenDates"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewInHours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:layout_marginRight="15dp"
+                android:text="בשעות"
+                android:textSize="20sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewInDays" />
+
+
+            <EditText
+                android:id="@+id/addQueuesHourStartEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:editable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/chooseHour"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/textViewHyphenHour"
+                app:layout_constraintRight_toLeftOf="@id/textViewInHours"
+                app:layout_constraintTop_toBottomOf="@+id/addQueuesDateStartEditText" />
+
+            <TextView
+                android:id="@+id/textViewHyphenHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="10dp"
+                android:text="-"
+                android:textSize="30sp"
+                app:layout_constraintLeft_toRightOf="@+id/addQueuesHourEndEditText"
+                app:layout_constraintRight_toLeftOf="@+id/addQueuesHourStartEditText"
+                app:layout_constraintTop_toBottomOf="@+id/textViewHyphenDates" />
+
+            <EditText
+                android:id="@+id/addQueuesHourEndEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:editable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/chooseHour"
+                android:singleLine="true"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/textViewHyphenHour"
+                app:layout_constraintTop_toBottomOf="@+id/addQueuesDateEndEditText" />
+
+
+            <ToggleButton
+                android:id="@+id/tb1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:checked="true"
+                android:textOff="ראשון"
+                android:textOn="ראשון"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/daysMsg" />
+
+            <ToggleButton
+                android:id="@+id/tb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:checked="true"
+                android:textOff="שני"
+                android:textOn="שני"
+                app:layout_constraintLeft_toRightOf="@id/tb3"
+                app:layout_constraintRight_toLeftOf="@id/tb1"
+                app:layout_constraintTop_toBottomOf="@id/daysMsg" />
+
+
+            <ToggleButton
+                android:id="@+id/tb3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:checked="true"
+                android:textOff="שלישי"
+                android:textOn="שלישי"
+                app:layout_constraintLeft_toRightOf="@id/tb4"
+                app:layout_constraintRight_toLeftOf="@id/tb2"
+                app:layout_constraintTop_toBottomOf="@id/daysMsg" />
+
+            <ToggleButton
+                android:id="@+id/tb4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:checked="true"
+                android:textOff="רביעי"
+                android:textOn="רביעי"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/daysMsg" />
+
+            <ToggleButton
+                android:id="@+id/tb5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:textOff="חמישי"
+                android:textOn="חמישי"
+                app:layout_constraintLeft_toRightOf="@id/tb6"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tb1" />
+
+            <ToggleButton
+                android:id="@+id/tb6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="שישי"
+                android:textOn="שישי"
+                app:layout_constraintLeft_toRightOf="@id/tb7"
+                app:layout_constraintRight_toLeftOf="@id/tb5"
+                app:layout_constraintTop_toBottomOf="@id/tb1" />
+
+            <ToggleButton
+                android:id="@+id/tb7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="שבת"
+                android:textOn="שבת"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tb6"
+                app:layout_constraintTop_toBottomOf="@id/tb1" />
+
+
+            <TextView
+                android:id="@+id/daysMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="תורים יקבעו בימים :"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addQueuesHourStartEditText" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/spaceBetweenQueues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tb5">
+
+                <TextView
+                    android:id="@+id/queueSpaceMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="רווח בין התורים :"
+                    android:textSize="20sp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/queueSpaceEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:cursorVisible="false"
+                    android:ems="2"
+                    android:inputType="number"
+                    android:maxEms="3"
+                    android:maxLength="3"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:textAlignment="center"
+                    app:layout_constraintRight_toLeftOf="@id/queueSpaceMsg"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="5dp"
+                    android:text="דקות"
+                    android:textSize="20sp"
+                    app:layout_constraintRight_toLeftOf="@id/queueSpaceEditText"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <Button
+                android:id="@+id/addQueuesBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="הוספת התורים"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spaceBetweenQueues" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
