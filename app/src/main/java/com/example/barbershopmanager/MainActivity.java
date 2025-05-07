@@ -4,9 +4,16 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 
 
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.Manifest;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -59,7 +66,7 @@ public class MainActivity extends AppCompatActivity
         navigationBar.setOnItemSelectedListener(getNavigationBarListener());
         loadingView.setVisibility(View.VISIBLE);
         QueuesData.refreshQueues(); // for notifications click
-        if (SharedData.getFromMemory("firstEnter"))
+        if (SharedData.getFromMemory("firstEnter",true))
             firstEnter();
         ServerRequest serverRequest = new ServerRequest( (String response) -> Main.checkIfUserCmdEnabledAns(response) );
         serverRequest.checkIfUserCmdEnabled();
@@ -76,6 +83,9 @@ public class MainActivity extends AppCompatActivity
 
     private void createNotificationChannels()
     {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 1);
+
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationChannel channel;
         channel = new NotificationChannel("userAddQueue", "קביעת תורים", NotificationManager.IMPORTANCE_DEFAULT);

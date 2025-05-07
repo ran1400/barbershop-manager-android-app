@@ -3,6 +3,7 @@ package com.example.barbershopmanager.sharedDate;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.barbershopmanager.MainActivity;
 import com.example.barbershopmanager.fragments.AddQueuesFragment;
@@ -41,10 +42,10 @@ public class SharedData
                 setting
         }
 
-        public static boolean getFromMemory(String infoName)
+        public static boolean getFromMemory(String infoName,boolean def)
         {
                 SharedPreferences sharedPreferences = mainActivity.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
-                return sharedPreferences.getBoolean(infoName,true);
+                return sharedPreferences.getBoolean(infoName,def);
         }
 
         public static void writeToMemory(String infoName,boolean bool)
