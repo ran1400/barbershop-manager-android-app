@@ -41,13 +41,17 @@ public class SendMsgFragment extends Fragment
     private ScrollView inAppMsgWindow,notificationMsgWindow,sendMailWindow;
     private RadioGroup selectMsgSwitch;
     private CheckBox cancelInAppMsgCheckBox;
+    private View view;
+
+    private CheckBox quietMsgCheckBox;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_send_msg, container, false);
+        view = inflater.inflate(R.layout.fragment_send_msg, container, false);
         SharedData.sendMsgFragment = this;
         inAppUpdateMsgBtn = view.findViewById(R.id.inAppUpdateMsgBtn);
+        quietMsgCheckBox = view.findViewById(R.id.quietMsgCheckBox);
         cancelInAppMsgCheckBox = view.findViewById(R.id.cancelInAppMsgCheckBox);
         inAppMsgEditText = view.findViewById(R.id.inAppMsgContent);
         mailTitleEditText = view.findViewById(R.id.mailTitle);
@@ -256,7 +260,7 @@ public class SendMsgFragment extends Fragment
         {
             sendNotificationMsgInRequest();
             ServerRequest serverRequest = new ServerRequest((response) -> Setting.sendNotificationAns(response));
-            serverRequest.sendNotificationToAllUsers(msgTitle,msgBody);
+            serverRequest.sendNotificationToAllUsers(msgTitle,msgBody,quietMsgCheckBox.isChecked());
         };
         AlertDialog.showAlertDialog(alertTitle,alertMsg,doIfUserPressOk);
     }
@@ -272,6 +276,6 @@ public class SendMsgFragment extends Fragment
         }
         sendNotificationMsgInRequest();
         ServerRequest serverRequest = new ServerRequest((response) -> Setting.sendNotificationAns(response));
-        serverRequest.sendNotificationToYourself(title,body);
+        serverRequest.sendNotificationToYourself(title,body,quietMsgCheckBox.isChecked());
     }
 }

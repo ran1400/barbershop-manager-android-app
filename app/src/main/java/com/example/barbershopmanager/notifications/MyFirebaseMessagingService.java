@@ -32,24 +32,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService
         }
 
         channelId = remoteMessage.getData().get("channel_id");
+        Log.d("channelId",channelId);
         if (title != null && body != null && channelId != null)
             showNotification(title,body,channelId);
         else
             Log.d("FCM", "Message received but no title or body to display.");
-
     }
 
     private void showNotification(String title, String body,String channelId)
     {
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationChannel channel = manager.getNotificationChannel(channelId);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel channel = notificationManager.getNotificationChannel(channelId);
         if (channel == null)
         {
             channel = new NotificationChannel(
                     channelId,
                     "Default Channel",
                     NotificationManager.IMPORTANCE_HIGH);
-            manager.createNotificationChannel(channel);
+            notificationManager.createNotificationChannel(channel);
         }
 
 
@@ -72,6 +72,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent);
 
-        manager.notify((int) System.currentTimeMillis(), builder.build());
+        notificationManager.notify((int) System.currentTimeMillis(), builder.build());
     }
 }

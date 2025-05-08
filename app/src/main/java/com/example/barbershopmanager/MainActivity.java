@@ -76,8 +76,7 @@ public class MainActivity extends AppCompatActivity
     private void firstEnter()
     {
         createNotificationChannels();
-        FirebaseMessaging.getInstance().subscribeToTopic("userUpdates");
-        FirebaseMessaging.getInstance().subscribeToTopic("managerTests");
+        FirebaseMessaging.getInstance().subscribeToTopic("managerNotifications");
         SharedData.writeToMemory("firstEnter",false);
     }
 
@@ -88,15 +87,15 @@ public class MainActivity extends AppCompatActivity
 
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationChannel channel;
-        channel = new NotificationChannel("userAddQueue", "קביעת תורים", NotificationManager.IMPORTANCE_DEFAULT);
+        channel = new NotificationChannel("userAddQueue","קביעת תורים", NotificationManager.IMPORTANCE_DEFAULT);
         manager.createNotificationChannel(channel);
-        channel = new NotificationChannel("userDeleteQueue", "ביטול תורים", NotificationManager.IMPORTANCE_DEFAULT);
+        channel = new NotificationChannel("userDeleteQueue","ביטול תורים", NotificationManager.IMPORTANCE_DEFAULT);
         manager.createNotificationChannel(channel);
-        channel = new NotificationChannel("userUpdateQueue", "עדכון תורים", NotificationManager.IMPORTANCE_DEFAULT);
+        channel = new NotificationChannel("userUpdateQueue","עדכון תורים", NotificationManager.IMPORTANCE_DEFAULT);
         manager.createNotificationChannel(channel);
-        channel = new NotificationChannel("testMsg", "הודעת ניסיון", NotificationManager.IMPORTANCE_DEFAULT);
+        channel = new NotificationChannel("testMsg","הודעת ניסיון", NotificationManager.IMPORTANCE_DEFAULT);
         manager.createNotificationChannel(channel);
-        channel = new NotificationChannel("testMsgQuiet", "הודעת ניסיון שקטה", NotificationManager.IMPORTANCE_LOW);
+        channel = new NotificationChannel("quiteTestMsg","הודעת ניסיון שקטה", NotificationManager.IMPORTANCE_LOW);
         manager.createNotificationChannel(channel);
     }
 

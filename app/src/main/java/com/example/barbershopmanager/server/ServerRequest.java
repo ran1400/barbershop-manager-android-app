@@ -29,7 +29,7 @@ public class ServerRequest
         map.put("secretKey",SharedData.mainActivity.getString(R.string.serverManagerSecretKey));
     }
 
-    public void sendNotificationToAllUsers(String title, String body)
+    public void sendNotificationToAllUsers(String title, String body,boolean quiteMsg)
     {
         url += "manager/send_notification_to_all_the_users.php";
         map.put("title",title);
@@ -37,10 +37,14 @@ public class ServerRequest
             map.put("body","\u200B"); //empty char
         else
             map.put("body",body);
+        if (quiteMsg)
+            map.put("quiteMsg","1");
+        else
+            map.put("quiteMsg","0");
         sendRequest();
     }
 
-    public void sendNotificationToYourself(String title, String body)
+    public void sendNotificationToYourself(String title,String body,boolean quiteMsg)
     {
         url += "manager/send_notification_to_yourself.php";
         map.put("title",title);
@@ -48,6 +52,10 @@ public class ServerRequest
             map.put("body","\u200B"); //empty char
         else
             map.put("body",body);
+        if (quiteMsg)
+            map.put("quiteMsg","1");
+        else
+            map.put("quiteMsg","0");
         sendRequest();
     }
 
@@ -59,9 +67,9 @@ public class ServerRequest
         map.put("mail",userMail);
         map.put("prevQueue",prevQueue);
         if (addToEmptyQueue)
-            map.put("addToEmptyQueue","yes");
+            map.put("addToEmptyQueue","1");
         else
-            map.put("addToEmptyQueue","no");
+            map.put("addToEmptyQueue","0");
         sendRequest();
     }
 
