@@ -1,4 +1,4 @@
-App screenshots : https://ran-y.me/barbershop-manager-screenshots
+App screenshots : https://ran-y.com/barbershop-manager-screenshots
 
 The app stored on the manager phone and give him the ability to look on : reserved queues,empty queues,past reserved queues,users list
 and do the actions:
