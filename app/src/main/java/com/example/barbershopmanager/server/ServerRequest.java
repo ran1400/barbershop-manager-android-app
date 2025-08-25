@@ -20,7 +20,7 @@ public class ServerRequest
 {
     public static final String REQUEST_ERROR = "requestError";
     private Map map;
-    private String url = "https://ran-y.me/barbershop/commands/";
+    private String url = "https://ran-y.com/barbershop/commands/";
     private ServerResponseHandle serverResponseHandle;
     public ServerRequest(ServerResponseHandle serverResponseHandle)
     {
