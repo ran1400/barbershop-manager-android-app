@@ -305,14 +305,14 @@ public class ServerRequest
 
     private void sendRequest()
     {
-        Log.d("sendHttpRequest",url + " " + map);
+        //Log.d("sendHttpRequest",url + " " + map);
         StringRequest sr = new StringRequest(1, url,
                 new Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String response)
                     {
-                        Log.d("sendHttpRequest","response : " + response);
+                        //Log.d("sendHttpRequest","response : " + response);
                         serverResponseHandle.doWhenGetResponseFromTheServer(response);
                     }
                 }, new Response.ErrorListener()
@@ -320,7 +320,7 @@ public class ServerRequest
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Log.d("sendHttpRequest","response : " + REQUEST_ERROR);
+                //Log.d("sendHttpRequest","response : " + REQUEST_ERROR);
                 serverResponseHandle.doWhenGetResponseFromTheServer(REQUEST_ERROR);
             }
         })
